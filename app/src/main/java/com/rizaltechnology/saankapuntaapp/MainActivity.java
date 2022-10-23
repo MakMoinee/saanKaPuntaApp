@@ -1,5 +1,6 @@
 package com.rizaltechnology.saankapuntaapp;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
@@ -16,12 +17,14 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
     private FragmentTransaction ft;
     private FragmentManager fm;
     private int fragmentIndex = 0;
+    private ProgressDialog ps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
         setContentView(R.layout.activity_main);
+        ps = new ProgressDialog(MainActivity.this);
         startFragment();
     }
 
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
     @Override
     public void onFinishSecondFragment() {
         fragmentIndex = 2;
-        fragment = new CreateAccountFragment(MainActivity.this);
+        fragment = new CreateAccountFragment(MainActivity.this, MainActivity.this, ps);
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         ft.replace(R.id.frame, fragment, null);

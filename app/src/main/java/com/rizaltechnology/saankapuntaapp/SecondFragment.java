@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.firestore.auth.User;
 import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
+import com.rizaltechnology.saankapuntaapp.Models.Users;
 
 public class SecondFragment extends Fragment {
 
@@ -43,6 +45,10 @@ public class SecondFragment extends Fragment {
                 if (editEmail.getText().toString().equals("") || editPassword.getText().toString().equals("")) {
                     Toast.makeText(mContext, "Please don't leave empty fields", Toast.LENGTH_SHORT).show();
                 } else {
+                    Users users = new Users();
+                    users.setEmail(editEmail.getText().toString());
+                    users.setPassword(editPassword.getText().toString());
+
 
                 }
             }
