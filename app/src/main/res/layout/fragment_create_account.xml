@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondFragment">
+    android:background="@android:color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,7 +15,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="Sign in\nto your Account."
+            android:text="Create\nyour Account."
             android:textColor="@android:color/holo_purple"
             android:textSize="25sp" />
 
@@ -51,21 +50,10 @@
             android:theme="@style/CustomTheme" />
 
         <TextView
-            android:id="@+id/lblWrongEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/editEmail"
-            android:layout_marginLeft="20dp"
-            android:text="Please login with email"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="10sp"
-            android:visibility="invisible" />
-
-        <TextView
             android:id="@+id/lblPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/lblWrongEmail"
+            android:layout_below="@+id/editEmail"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/roboto_bold"
@@ -92,54 +80,49 @@
             android:theme="@style/CustomTheme" />
 
         <TextView
-            android:id="@+id/lblWrongPassword"
+            android:id="@+id/lblConfirmPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editPassword"
             android:layout_marginLeft="20dp"
-            android:text="Wrong password"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="10sp"
-            android:visibility="invisible" />
-
-        <Button
-            android:id="@+id/btnLogin"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblWrongPassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_medium"
-            android:padding="10dp"
-            android:text="Login"
-            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_bold"
+            android:text="CONFIRM PASSWORD"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/editConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lblConfirmPassword"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="16sp"
             android:theme="@style/CustomTheme" />
 
-        <TextView
-            android:id="@+id/txtCreateAccount"
-            android:layout_width="wrap_content"
+        <Button
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btnLogin"
+            android:layout_below="@+id/editConfirmPassword"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/roboto_boldcondensed"
-            android:text="Don't have an account?"
-            android:textColor="@color/teal_200"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/txtForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtCreateAccount"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_boldcondensed"
-            android:text="Forgot Password?"
-            android:textColor="@color/teal_200"
-            android:textSize="18sp" />
-
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/roboto_regular"
+            android:padding="10dp"
+            android:text="Create Account"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:theme="@style/CustomTheme" />
     </RelativeLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

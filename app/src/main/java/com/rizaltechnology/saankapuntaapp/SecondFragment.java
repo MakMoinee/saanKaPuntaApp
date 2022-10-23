@@ -1,47 +1,69 @@
 package com.rizaltechnology.saankapuntaapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.rizaltechnology.saankapuntaapp.databinding.FragmentSecondBinding;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
 
 public class SecondFragment extends Fragment {
 
-    private FragmentSecondBinding binding;
+    private Context mContext;
+    private Button btnLogin;
+    private EditText editEmail, editPassword;
+    private FragmentFinish fn;
+    private TextView txtCreateAccount;
 
-    @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-
-        binding = FragmentSecondBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+    public SecondFragment(Context context, FragmentFinish finish) {
+        mContext = context;
+        fn = finish;
 
     }
 
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View mView = LayoutInflater.from(mContext).inflate(R.layout.fragment_second, container, false);
+        initViews(mView);
+        initListener();
+        return mView;
+    }
 
-        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
+    private void initListener() {
+        btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(SecondFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+            public void onClick(View v) {
+                if (editEmail.getText().toString().equals("") || editPassword.getText().toString().equals("")) {
+                    Toast.makeText(mContext, "Please don't leave empty fields", Toast.LENGTH_SHORT).show();
+                } else {
+
+                }
             }
         });
+        txtCreateAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fn.onFinishSecondFragment();
+            }
+        });
+    }
+
+    private void initViews(View mView) {
+        btnLogin = mView.findViewById(R.id.btnLogin);
+        editEmail = mView.findViewById(R.id.editEmail);
+        editPassword = mView.findViewById(R.id.editPassword);
+        txtCreateAccount = mView.findViewById(R.id.txtCreateAccount);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
     }
-
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "800440263463",
+    "project_id": "saankapuntaapp",
+    "storage_bucket": "saankapuntaapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800440263463:android:ab85a5dce33eeeb3f07f02",
+        "android_client_info": {
+          "package_name": "com.rizaltechnology.saankapuntaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800440263463-50e9un5okfq9skr2mg4kts28e1nf1ej2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6SukXDIrFU-NiZE6gOMf5Zq21gGiIBT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800440263463-50e9un5okfq9skr2mg4kts28e1nf1ej2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
