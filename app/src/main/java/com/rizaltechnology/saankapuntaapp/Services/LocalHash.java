@@ -10,7 +10,7 @@ public class LocalHash {
 
     public String makeHashPassword(String password) {
         String hashPass = "";
-        hashPass = BCrypt.withDefaults().hashToString(16, password.toCharArray());
+        hashPass = BCrypt.withDefaults().hashToString(8, password.toCharArray());
         return hashPass;
     }
 

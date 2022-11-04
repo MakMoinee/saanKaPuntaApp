@@ -29,4 +29,10 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">#ffaa66cc</item>
     </style>
+    <style name="CustomBlackTheme" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">#000000</item>
+    </style>
 </resources>

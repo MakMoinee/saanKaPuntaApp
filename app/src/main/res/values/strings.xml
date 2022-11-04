@@ -9,4 +9,34 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+    <string-array name="search_array">
+        <item>Faculty Office of the Department of Electrical Engineering</item>
+        <item>Faculty Office of the Department of Engineering</item>
+        <item>Dean’s Office – College of Engineering, Architecture and Technology</item>
+        <item>Alumni Office</item>
+        <item>ECE Department Office</item>
+        <item>Management Information Center</item> <!-- 2nd Building -->
+        <item>Office of the Vice-President of Academic Affairs</item>
+        <item>Office of the Director of the Finance Services</item>
+        <item>Cashier Window</item>
+        <item>Cashier Staff’s Office</item>
+        <item>Office of the VPSS</item>
+        <item>VPAA Staff’s Office</item>
+        <item>Office of the VPDA</item>
+        <item>Office the President</item>
+        <item>COA</item>
+        <item>Accounting Office</item>
+        <item>Office of the Department for Administration Services</item>
+        <item>Business Affairs Office</item>
+        <item>Department of Instrumentation and Control Engineering</item>
+        <item>Scholarship &amp; Grant Office</item> <!-- 3rd building -->
+        <item>Center for Students Affairs</item>
+        <item>Registrar</item>
+        <item>DOST Office</item>
+        <item>Records Management Office</item>
+        <item>College of Arts and Science Faculty Office</item>
+        <item>College of Arts and Sciences Reading Center</item>
+    </string-array>
 </resources>
