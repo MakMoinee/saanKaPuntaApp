@@ -96,7 +96,11 @@ public class BuildingFragment extends Fragment {
             if (directoryMap.containsKey(buildings.getBuildingName())) {
                 buildings.setPicturePath(directoryMap.get(buildings.getBuildingName()));
             }
-
+        }else{
+            Map<String, String> floorMap = Constants.getFloorMap();
+            if (floorMap.containsKey(buildings.getDescription())) {
+                buildings.setPicturePath(floorMap.get(buildings.getDescription()));
+            }
         }
 
         Map<String, Integer> locationMap = Constants.getLocationsMap();
@@ -119,7 +123,6 @@ public class BuildingFragment extends Fragment {
                         } else {
                             lblTitle.setText(buildings.getDescription());
                             locationKey = buildings.getDescription();
-                            loadNavGuide(imgNavGuide, locationKey, lblNavGuide);
                             videoKey = locationKey;
                         }
                         boolean hasThatLocation = locationMap.containsKey(locationKey);
@@ -270,7 +273,7 @@ public class BuildingFragment extends Fragment {
 
     }
 
-    private void loadNavGuide(ImageView imgBuildingPoster, String key, TextView lblNavGuide) {
+    private void loadNavGuide(String key, TextView lblNavGuide) {
         Map<String, String> buildingMaps = Constants.getBuildingMaps();
         Map<String, String> floorMaps = Constants.getFloorMap();
 
@@ -315,7 +318,7 @@ public class BuildingFragment extends Fragment {
                             .into(imgBuildingPoster, new Callback() {
                                 @Override
                                 public void onSuccess() {
-                                    lblNavGuide.setVisibility(View.VISIBLE);
+
                                 }
 
                                 @Override

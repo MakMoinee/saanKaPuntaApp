@@ -84,9 +84,9 @@ public class Constants {
 
     public static Map<String,String> getDirectoryMap(){
         Map<String, String> directoryMap = new HashMap<>();
-        directoryMap.put("Wellness And Health Building", "https://drive.google.com/file/d/1WTRlOu-ZbZvoHX7Hh0aTN_4xnzSG8ld_/view?usp=share_link");
-        directoryMap.put("Dr. Lydia M. Profeta Building", "https://drive.google.com/file/d/1B-kzK3BgVn2CUXgF7uSVA1SC8gsLKmsQ/view?usp=share_link");
-        directoryMap.put("Sen. Nepatali A. Gonzales Academic Hall","https://drive.google.com/file/d/1SXfO2Ag1H04EKZxpoGhEI2nxQE_JbjBI/view?usp=share_link");
+        directoryMap.put("Wellness And Health Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
+        directoryMap.put("Dr. Lydia M. Profeta Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
+        directoryMap.put("Sen. Nepatali A. Gonzales Academic Hall","https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/SNAGAH%20directory.png?raw=true");
         return directoryMap;
     }
 
