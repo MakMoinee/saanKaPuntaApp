@@ -62,5 +62,49 @@
         <item>College of Education Department Head Office</item>
         <item>College of Education Faculty Office</item>
         <item>Senior High School Faculty Office</item>
+        <item>RTU Co-Op</item> <!-- Old Building -->
+        <item>Food Kiosk</item>
+        <item>ROTC Office</item>
+        <item>Office of the Director Department of Extension Expenses</item>
+        <item>Clinic</item>
+        <item>President Emeritus Office</item> <!-- Research -->
+        <item>Bids and Awards Committee Office</item>
+        <item>Astronomy Hall</item>
+        <item>Astronomy Office</item>
+        <item>Astronomy Library</item>
+        <item>Conference Blue Room</item>
+        <item>RND Conference Room</item>
+        <item>VP Research Office</item>
+        <item>VP Research Extension Services Office</item>
+        <item>GSSAI Office</item>
+        <item>Gender and Development Office</item>
+        <item>International Relations and Grants Office</item>
+        <item>Graduate School Dean’s Office</item>
+        <item>Accreditation Room</item>
+        <item>Graduate School Library</item>
+        <item>GS Research &amp; Development Extension Services</item>
+        <item>Guidance Counseling</item>
+        <item>Institute of Human Kinetics Research Office</item>
+        <item>Institute of Human Kinetics Faculty Office</item>
+        <item>Graduate School – Information Technology Center</item>
+        <item>Office of the Director of Astronomy Research</item>
+        <item>Guidance Office</item> <!-- Wellness -->
+        <item>DRRMO Office</item>
+        <item>Counseling Office</item>
+        <item>Office of Student Affairs</item>
+        <item>Medical and Dental SVCS Center</item>
+        <item>Sports Development Wellness Center</item>
+        <item>Internal Linkages and External Affairs Center</item>
+        <item>CBET Dean’s Office</item>
+        <item>CBET Department</item>
+        <item>Guidance and Counselling Services Center</item>
+        <item>Cultural Affairs Office</item>
+        <item>RTU Himig Rizalia</item>
+        <item>Tunog Rizalia Rondalla</item>
+        <item>Badminton Court</item>
+        <item>Table Tennis Court</item>
+        <item>Board Games Court</item>
+        <item>Swimming Pool</item>
+        <item>Basketball Court</item>
     </string-array>
 </resources>

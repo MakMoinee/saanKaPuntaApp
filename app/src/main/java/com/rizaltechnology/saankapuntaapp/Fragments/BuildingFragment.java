@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.SurfaceView;
@@ -91,17 +92,11 @@ public class BuildingFragment extends Fragment {
         player.hide();
         initListeners();
 
-        if (buildings.getDescription().equals("")) {
-            Map<String, String> directoryMap = Constants.getDirectoryMap();
-            if (directoryMap.containsKey(buildings.getBuildingName())) {
-                buildings.setPicturePath(directoryMap.get(buildings.getBuildingName()));
-            }
-        }else{
-            Map<String, String> floorMap = Constants.getFloorMap();
-            if (floorMap.containsKey(buildings.getDescription())) {
-                buildings.setPicturePath(floorMap.get(buildings.getDescription()));
-            }
+        Map<String, String> directoryMap = Constants.getDirectoryMap();
+        if (directoryMap.containsKey(buildings.getBuildingName())) {
+            buildings.setPicturePath(directoryMap.get(buildings.getBuildingName()));
         }
+
 
         Map<String, Integer> locationMap = Constants.getLocationsMap();
         Map<String, Integer> directionsMap = Constants.getDirectionsMap();
@@ -123,6 +118,7 @@ public class BuildingFragment extends Fragment {
                         } else {
                             lblTitle.setText(buildings.getDescription());
                             locationKey = buildings.getDescription();
+                            loadNavGuide(imgNavGuide, locationKey, lblNavGuide);
                             videoKey = locationKey;
                         }
                         boolean hasThatLocation = locationMap.containsKey(locationKey);
@@ -147,7 +143,7 @@ public class BuildingFragment extends Fragment {
                             Map<String, String> buildingMaps = Constants.getBuildingMaps();
                             lblLocation.setVisibility(View.GONE);
                             txtLocation.setVisibility(View.VISIBLE);
-                            String data = "";
+                            String data = "List of Offices Within This Building:\n\n";
                             for (Map.Entry<String, String> entry : buildingMaps.entrySet()) {
                                 Log.e("entry key", entry.getKey());
                                 Log.e("entry val", entry.getValue());
@@ -187,57 +183,34 @@ public class BuildingFragment extends Fragment {
             public void onClick(View v) {
                 if (!player.isVisible()) {
                     player.show();
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            player.hide();
+                        }
+                    }, 1500);
                 }
             }
         });
     }
 
     private void processVideo() {
-        Map<String, String> buildingMaps = Constants.getBuildingMaps();
+        Map<String, String> videoMaps = Constants.getVirtualGuideMap();
 
         Log.e("VIDEOKEY", videoKey);
         if (videoKey == "") {
             return;
         }
-        if (!buildingMaps.containsKey(videoKey)) {
+        if (!videoMaps.containsKey(videoKey)) {
             Log.e("VIDEOKEY3", videoKey);
             return;
         }
-        String folderName = buildingMaps.get(videoKey);
-        videoKey = videoKey.replaceAll("-", " ");
-        Log.e("VIDEOKEY2", videoKey);
-        String fullPath = folderName + "/" + videoKey + ".mp4";
 
-        StorageListener storageCallback = new StorageListener() {
-            @Override
-            public void onSuccess(String data) {
-
-            }
-
-            @Override
-            public void onSuccessBuilding(List<Buildings> buildingsList) {
-
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Log.e("ERROR", e.getMessage());
-            }
-
-            @Override
-            public void onSuccessRetrieveVideoURL(Buildings buildings) {
-                if (buildings != null) {
-                    playVideo(buildings);
-                }
-            }
-
-            @Override
-            public void onSuccessRetrieveNavGuide(Buildings buildings) {
-
-            }
-        };
-        Storage storage = new Storage(storageCallback);
-        storage.getBuildingVideoPath(fullPath);
+        String videoURL = videoMaps.get(videoKey);
+        Log.e("videoURL", videoURL);
+        buildings.setVideoPath(videoURL);
+        playVideo(buildings);
 
     }
 
@@ -266,6 +239,8 @@ public class BuildingFragment extends Fragment {
 
             @Override
             public void onPlayerError(PlaybackException error) {
+                pbPlayer.setVisibility(View.INVISIBLE);
+                btnPlay.setVisibility(View.VISIBLE);
                 Player.Listener.super.onPlayerError(error);
             }
         });
@@ -273,64 +248,31 @@ public class BuildingFragment extends Fragment {
 
     }
 
-    private void loadNavGuide(String key, TextView lblNavGuide) {
-        Map<String, String> buildingMaps = Constants.getBuildingMaps();
+    private void loadNavGuide(ImageView img, String key, TextView lblNavGuide) {
         Map<String, String> floorMaps = Constants.getFloorMap();
 
-        if (!buildingMaps.containsKey(key)) {
-            return;
-        }
         if (!floorMaps.containsKey(key)) {
             return;
         }
-        String folderName = buildingMaps.get(key);
         String fileName = floorMaps.get(key);
-        String fullPath = folderName + "/" + fileName;
-        StorageListener storageCallback = new StorageListener() {
-            @Override
-            public void onSuccess(String data) {
 
-            }
+        Uri uri = Uri.parse(fileName);
+        Picasso.get().invalidate(uri);
+        Picasso.get().load(uri)
+                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
+                .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
+                .into(img, new Callback() {
+                    @Override
+                    public void onSuccess() {
+                        lblNavGuide.setVisibility(View.VISIBLE);
+                        img.setVisibility(View.VISIBLE);
+                    }
 
-            @Override
-            public void onSuccessBuilding(List<Buildings> buildingsList) {
+                    @Override
+                    public void onError(Exception e) {
 
-            }
-
-            @Override
-            public void onError(Exception e) {
-                Log.e("ERROR_LOADING_NAV_GUIDE", e.getMessage());
-            }
-
-            @Override
-            public void onSuccessRetrieveVideoURL(Buildings buildings) {
-
-            }
-
-            @Override
-            public void onSuccessRetrieveNavGuide(Buildings buildings) {
-                if (buildings != null) {
-                    Uri uri = Uri.parse(buildings.getPicturePath());
-                    Picasso.get().invalidate(uri);
-                    Picasso.get().load(uri)
-                            .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-                            .networkPolicy(NetworkPolicy.NO_CACHE, NetworkPolicy.NO_STORE)
-                            .into(imgBuildingPoster, new Callback() {
-                                @Override
-                                public void onSuccess() {
-
-                                }
-
-                                @Override
-                                public void onError(Exception e) {
-
-                                }
-                            });
-                }
-            }
-        };
-        Storage storage = new Storage(storageCallback);
-        storage.getBuildingNavGuideByPath(fullPath);
+                    }
+                });
     }
 
     /* access modifiers changed from: private */
