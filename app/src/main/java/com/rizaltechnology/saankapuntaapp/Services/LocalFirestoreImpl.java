@@ -71,10 +71,10 @@ public class LocalFirestoreImpl implements LocalFireStore {
                                     if (hash.verifyPassword(users.getPassword(), users1.getPassword())) {
                                         users1.setDocID(documentSnapshot.getId());
                                         listener.onAddUserSuccess(users1);
-                                    } else {
-                                        listener.onAddUserError(new Exception("Wrong Username or Password"));
                                     }
 
+                                }else {
+                                    listener.onAddUserError(new Exception("Wrong Username or Password"));
                                 }
                             }
 

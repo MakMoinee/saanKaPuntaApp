@@ -10,7 +10,24 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <string name="locations_college_of_education_faculty_office">
+        - 8th floor – Senator Neptali A. Gonzales Academic Hall
+    </string>
+    <string name="directions_college_of_education_faculty_office">
+        - Go to Senator Neptali A. Gonzales Academic Hall
+        - Take Elevator to the 8 th floor
+        - Turn left
+    </string>
 
+    <string name="locations_office_of_the_vice_president_of_academic_affairs">
+        - Ground Floor – Dr. Lydia M. Profeta Building
+    </string>
+    <string name="directions_office_of_the_vice_president_of_academic_affairs">
+        - Go to the ground floor of Dr. Lydia M. Profeta Building\n
+        - Turn right upon entering the Building\n
+        - Turn left\n
+        - Then turn left to reach the destination
+    </string>
     <string-array name="search_array">
         <item>Faculty Office of the Department of Electrical Engineering</item>
         <item>Faculty Office of the Department of Engineering</item>
@@ -38,5 +55,12 @@
         <item>Records Management Office</item>
         <item>College of Arts and Science Faculty Office</item>
         <item>College of Arts and Sciences Reading Center</item>
+        <item>Main Library</item> <!--4th Building Sen. Naptili -->
+        <item>Information Technology Library</item>
+        <item>Information Technology Department</item>
+        <item>Laboratory High School Faculty</item>
+        <item>College of Education Department Head Office</item>
+        <item>College of Education Faculty Office</item>
+        <item>Senior High School Faculty Office</item>
     </string-array>
 </resources>

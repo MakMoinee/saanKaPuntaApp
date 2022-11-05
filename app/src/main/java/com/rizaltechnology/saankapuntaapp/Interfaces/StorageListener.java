@@ -8,4 +8,6 @@ public interface StorageListener {
     void onSuccess(String data);
     void onSuccessBuilding(List<Buildings> buildingsList);
     void onError(Exception e);
+    void onSuccessRetrieveNavGuide(Buildings buildings);
+    void onSuccessRetrieveVideoURL(Buildings buildings);
 }

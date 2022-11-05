@@ -71,6 +71,7 @@ public class SecondFragment extends Fragment {
 
                         @Override
                         public void onAddUserError(Exception e) {
+                            Log.e("LOGIN_ERR", e.getMessage());
                             pd.dismiss();
                             Toast.makeText(mContext, "Wrong username or Password", Toast.LENGTH_SHORT).show();
                         }

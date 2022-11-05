@@ -12,13 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,10 +32,12 @@ import java.util.Map;
 
 public class MainFormFragment extends Fragment implements StorageListener {
 
+
     private Context context;
     private RecyclerView recyclerView;
     private ImageButton btnHome, btnSearch;
     private List<Buildings> buildingsList = new ArrayList<>();
+    private List<Buildings> origList = new ArrayList<>();
     private BuildingAdapter adapter;
     private Storage storage;
     private AutoCompleteTextView txtSearch;
@@ -49,12 +46,14 @@ public class MainFormFragment extends Fragment implements StorageListener {
     private FragmentFinish fn;
     private String[] countries;
     private ArrayAdapter<String> adapterStr;
+    private String lastSearchVal = "";
 
     private BuildingListener bListener = new BuildingListener() {
         @Override
         public void OnClickListener(View mView, int position) {
             Buildings buildings = buildingsList.get(position);
             String buildName = buildings.getBuildingName().replaceAll(".jpg", "");
+            buildings.setDescription(lastSearchVal);
             buildings.setBuildingName(buildName);
             fn.openBuildingFragment(buildings);
 
@@ -71,7 +70,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
                 public void run() {
                     storage.getBuildingsPoster();
                 }
-            }, 200);
+            }, 50);
         }
     }
 
@@ -106,11 +105,23 @@ public class MainFormFragment extends Fragment implements StorageListener {
     private void loadChangeSearchValue() {
         String searchVal = txtSearch.getText().toString();
         if (searchVal.length() == 0) {
+            lastSearchVal = "";
+            adapter = new BuildingAdapter(context, origList, bListener);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            recyclerView.setAdapter(adapter);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            }, 50);
             return;
         }
         if (adapterStr.getPosition(searchVal) < 0) {
+            lastSearchVal = "";
             return;
         }
+        lastSearchVal = searchVal;
         Map<String, String> map = Constants.getBuildingMaps();
         String storageName = map.get(searchVal);
 
@@ -140,6 +151,16 @@ public class MainFormFragment extends Fragment implements StorageListener {
                 public void onError(Exception e) {
 
                 }
+
+                @Override
+                public void onSuccessRetrieveNavGuide(Buildings buildings) {
+
+                }
+
+                @Override
+                public void onSuccessRetrieveVideoURL(Buildings buildings) {
+
+                }
             };
 
             Storage searchStorage = new Storage(storageSearchListener);
@@ -149,10 +170,13 @@ public class MainFormFragment extends Fragment implements StorageListener {
             List<Buildings> newBuilding = new ArrayList<>();
             for (Buildings b : buildingsList) {
                 String buildName = b.getBuildingName().replaceAll(".jpg", "");
+                Log.e("buildName", buildName);
                 if (buildName.equals(storageName)) {
                     newBuilding.add(b);
+                    break;
                 }
             }
+            buildingsList = newBuilding;
 
             adapter = new BuildingAdapter(context, newBuilding, bListener);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
@@ -162,7 +186,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
                 public void run() {
                     recyclerView.setVisibility(View.VISIBLE);
                 }
-            }, 300);
+            }, 50);
         }
 
 
@@ -205,8 +229,14 @@ public class MainFormFragment extends Fragment implements StorageListener {
     @Override
     public void onSuccessBuilding(List<Buildings> b) {
         if (b != null) {
+
+            if (buildingsList.size() > 0) {
+                buildingsList.clear();
+                origList.clear();
+            }
             for (Buildings buildings : b) {
                 buildingsList.add(buildings);
+                origList.add(buildings);
             }
 
             adapter = new BuildingAdapter(context, buildingsList, bListener);
@@ -217,7 +247,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
                 public void run() {
                     recyclerView.setVisibility(View.VISIBLE);
                 }
-            }, 200);
+            }, 50);
 
         }
     }
@@ -225,5 +255,15 @@ public class MainFormFragment extends Fragment implements StorageListener {
     @Override
     public void onError(Exception e) {
         Log.e("STORAGE_ERR", e.getMessage());
+    }
+
+    @Override
+    public void onSuccessRetrieveNavGuide(Buildings buildings) {
+
+    }
+
+    @Override
+    public void onSuccessRetrieveVideoURL(Buildings buildings) {
+
     }
 }

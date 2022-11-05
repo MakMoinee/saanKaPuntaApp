@@ -74,7 +74,7 @@
             android:minLines="1"
             android:paddingLeft="30dp"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:theme="@style/CustomTheme" />
 
         <ImageButton
@@ -83,7 +83,7 @@
             android:layout_height="30dp"
             android:layout_below="@+id/lblSchool"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_search" />
 

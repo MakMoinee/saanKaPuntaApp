@@ -1,5 +1,7 @@
 package com.rizaltechnology.saankapuntaapp.Common;
 
+import com.rizaltechnology.saankapuntaapp.R;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ public class Constants {
     public static final String buildingFileFolder = "Dr. Josefina Estolas Building,Dr. Lydia M. Profeta Building,Main Academic Building,Old Building,Research And Development Building,Sen. Nepatali A. Gonzales Academic Hall,Wellness And Health Building";
     public static final String buildingPath = "Buildings/";
     public static final String postersPath = "Posters/";
+    public static final String virtualGuidePath = "Virtual Guides/";
 
     public static Map<String, String> getBuildingMaps() {
         Map<String, String> buildingMaps = new HashMap<>();
@@ -43,10 +46,48 @@ public class Constants {
 
 //        buildingMaps.put(BUILDING_CODES_O, "Old Building");
 //        buildingMaps.put(BUILDING_CODES_RAD, "Research And Development Building");
-//        buildingMaps.put(BUILDING_CODES_SBAGAH, "Sen. Nepatali A. Gonzales Academic Hall");
-//        buildingMaps.put(BUILDING_CODES_WAH, "Wellness And Health Building");
+
+        buildingMaps.put("Main Library", "Sen. Nepatali A. Gonzales Academic Hall");
+        buildingMaps.put("Information Technology Library", "Sen. Nepatali A. Gonzales Academic Hall");
+        buildingMaps.put("Information Technology Department", "Sen. Nepatali A. Gonzales Academic Hall");
+        buildingMaps.put("Laboratory High School Faculty", "Sen. Nepatali A. Gonzales Academic Hall");
+        buildingMaps.put("College of Education Department Head Office", "Sen. Nepatali A. Gonzales Academic Hall");
+        buildingMaps.put("College of Education Faculty Office", "Sen. Nepatali A. Gonzales Academic Hall");
+        buildingMaps.put("Senior High School Faculty Office", "Sen. Nepatali A. Gonzales Academic Hall");
+
+//        buildingMaps.put(BUILDING_CODES_WAH, "Wellness And Health Building"); College of Education Office
 
         return buildingMaps;
+    }
+
+    public static Map<String, Integer> getLocationsMap() {
+        Map<String, Integer> buildingMaps = new HashMap<>();
+        buildingMaps.put("Office of the Vice-President of Academic Affairs", R.string.locations_office_of_the_vice_president_of_academic_affairs);
+        buildingMaps.put("College of Education Faculty Office", R.string.locations_college_of_education_faculty_office);
+        return buildingMaps;
+    }
+
+    public static Map<String, Integer> getDirectionsMap() {
+        Map<String, Integer> buildingMaps = new HashMap<>();
+        buildingMaps.put("Office of the Vice-President of Academic Affairs", R.string.directions_office_of_the_vice_president_of_academic_affairs);
+        buildingMaps.put("College of Education Faculty Office", R.string.directions_college_of_education_faculty_office);
+        return buildingMaps;
+    }
+
+    public static Map<String, String> getFloorMap() {
+        Map<String, String> floorMaps = new HashMap<>();
+        floorMaps.put("Office of the Vice-President of Academic Affairs", "1st floor - Profeta.jpg");
+        floorMaps.put("College of Education Faculty Office", "8th Floor - SNAGAH.jpg");
+
+        return floorMaps;
+    }
+
+    public static Map<String,String> getDirectoryMap(){
+        Map<String, String> directoryMap = new HashMap<>();
+        directoryMap.put("Wellness And Health Building", "https://drive.google.com/file/d/1WTRlOu-ZbZvoHX7Hh0aTN_4xnzSG8ld_/view?usp=share_link");
+        directoryMap.put("Dr. Lydia M. Profeta Building", "https://drive.google.com/file/d/1B-kzK3BgVn2CUXgF7uSVA1SC8gsLKmsQ/view?usp=share_link");
+        directoryMap.put("Sen. Nepatali A. Gonzales Academic Hall","https://drive.google.com/file/d/1SXfO2Ag1H04EKZxpoGhEI2nxQE_JbjBI/view?usp=share_link");
+        return directoryMap;
     }
 
 }

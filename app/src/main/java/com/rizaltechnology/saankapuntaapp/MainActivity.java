@@ -30,6 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements FragmentFinish {
 
     private Fragment fragment;
+    private BuildingFragment buildFragment;
     private FragmentTransaction ft;
     private FragmentManager fm;
     private int fragmentIndex = 0;
@@ -92,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
     @Override
     public void onLoginFinish() {
         fragmentIndex = 3;
-        fragment = new MainFormFragment(MainActivity.this, MainActivity.this,false);
+        fragment = new MainFormFragment(MainActivity.this, MainActivity.this, false);
 
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
@@ -103,10 +104,10 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
     @Override
     public void openBuildingFragment(Buildings buildings) {
         fragmentIndex = 4;
-        fragment = new BuildingFragment(MainActivity.this, buildings, null);
+        buildFragment = new BuildingFragment(MainActivity.this, buildings);
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
-        ft.replace(R.id.frame, fragment, null);
+        ft.replace(R.id.frame, buildFragment, null);
         ft.addToBackStack("building");
         ft.commit();
     }
@@ -124,9 +125,10 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
                 onFinishFirstFragment();
                 break;
             case 4:
+                buildFragment.releasePlayer();
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
                 fragmentIndex = 3;
-                fragment = new MainFormFragment(MainActivity.this, MainActivity.this,true);
+                fragment = new MainFormFragment(MainActivity.this, MainActivity.this, true);
                 fm = getSupportFragmentManager();
                 ft = fm.beginTransaction();
                 ft.replace(R.id.frame, fragment, null);

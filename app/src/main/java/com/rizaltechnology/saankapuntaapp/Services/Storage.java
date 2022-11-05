@@ -205,4 +205,56 @@ public class Storage {
                 });
 
     }
+
+    public void getBuildingNavGuideByPath(String fullPath) {
+        Log.e("FULLPATH", Constants.buildingPath + fullPath);
+        StorageReference sf = fs.getReference().child(Constants.buildingPath + fullPath);
+        sf.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        if (!uri.toString().equals("")) {
+                            Buildings b = new Buildings();
+                            b.setBuildingName(sf.getName());
+                            b.setPicturePath(uri.toString());
+                            listener.onSuccessRetrieveNavGuide(b);
+
+                        } else {
+                            listener.onError(new Exception("Empty URI"));
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+    }
+
+    public void getBuildingVideoPath(String fullPath) {
+        Log.e("FULLPATH_VIDEO", Constants.virtualGuidePath + fullPath);
+        StorageReference sf = fs.getReference().child(Constants.virtualGuidePath + fullPath);
+        sf.getDownloadUrl()
+                .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        if (!uri.toString().equals("")) {
+                            Buildings b = new Buildings();
+                            b.setBuildingName(sf.getName());
+                            b.setVideoPath(uri.toString());
+                            listener.onSuccessRetrieveVideoURL(b);
+
+                        } else {
+                            listener.onError(new Exception("Empty URI"));
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onError(e);
+                    }
+                });
+    }
 }

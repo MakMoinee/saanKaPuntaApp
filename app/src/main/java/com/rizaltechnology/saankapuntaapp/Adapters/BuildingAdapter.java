@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,7 +45,7 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
         Buildings buildings = buildingsList.get(position);
         Uri uri = Uri.parse(buildings.getPicturePath());
         String buildName = buildings.getBuildingName().replaceAll(".jpg", "");
-        holder.itemView.setVisibility(View.INVISIBLE);
+//        holder.itemView.setVisibility(View.INVISIBLE);
         Picasso.get().invalidate(uri);
         Picasso.get().load(uri)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
@@ -53,7 +54,9 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
                     @Override
                     public void onSuccess() {
                         holder.txtBuildingName.setText(buildName);
-                        holder.itemView.setVisibility(View.VISIBLE);
+//                        holder.itemView.setVisibility(View.VISIBLE);
+                        holder.pb.setVisibility(View.GONE);
+                        holder.imgBuildingPoster.setVisibility(View.VISIBLE);
                     }
 
                     @Override
@@ -71,11 +74,13 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imgBuildingPoster;
         public TextView txtBuildingName;
+        public ProgressBar pb;
 
         public ViewHolder(View itemView) {
             super(itemView);
             imgBuildingPoster = itemView.findViewById(R.id.imgBuildingPoster);
             txtBuildingName = itemView.findViewById(R.id.txtBuildingName);
+            pb = itemView.findViewById(R.id.pb);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
