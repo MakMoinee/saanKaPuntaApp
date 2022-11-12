@@ -9,6 +9,17 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="locations_college_of_engineering_arch_and_tech">
+        - 2nd floor – Dr. Josefina Estolas Building
+    </string>
+    <string name="directions_college_of_engineering_arch_and_tech">
+        - Go to the Dr. Josefina Estolas Building\n
+        - Take the stairs to the 2 nd floor\n
+        - Turn left\n
+        - Walk Straight until the end of the floor
+    </string>
+
     <string name="locations_cas_faculty">
         - 2nd floor Main Academic Building
     </string>

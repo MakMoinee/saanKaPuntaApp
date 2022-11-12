@@ -112,6 +112,8 @@ public class Constants {
 
         buildingMaps.put("Registrar", R.string.locations_registrar);
         buildingMaps.put("College of Arts and Sciences Faculty Office", R.string.locations_cas_faculty);
+
+        buildingMaps.put("Dean’s Office – College of Engineering, Architecture and Technology", R.string.locations_college_of_engineering_arch_and_tech);
         return buildingMaps;
     }
 
@@ -126,6 +128,9 @@ public class Constants {
         buildingMaps.put("Registrar", R.string.directions_registrar);
         buildingMaps.put("College of Arts and Sciences Faculty Office", R.string.directions_cas_faculty);
 
+        buildingMaps.put("Dean’s Office – College of Engineering, Architecture and Technology", R.string.directions_college_of_engineering_arch_and_tech);
+
+
         return buildingMaps;
     }
 
@@ -137,6 +142,7 @@ public class Constants {
         floorMaps.put("Cashier Staff’s Office", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/1st%20Floor.PNG?raw=true");
         floorMaps.put("Registrar", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Main%20Academic%20Building/Ground%20Floor.PNG?raw=true");
         floorMaps.put("College of Arts and Sciences Faculty Office", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Main%20Academic%20Building/2nd%20Floor.PNG?raw=true");
+        floorMaps.put("Dean’s Office – College of Engineering, Architecture and Technology", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/2nd%20Floor.PNG?raw=true");
         return floorMaps;
     }
 
@@ -148,6 +154,7 @@ public class Constants {
         virtualGuideMaps.put("Cashier Window", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FDr.%20Lydia%20M.%20Profeta%20Building%2FCashier.mp4?alt=media&token=3a1a5260-6613-4714-8c0b-0f0f4a479b95");//
         virtualGuideMaps.put("Registrar", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FMain%20Academic%20Building%2FRegistrar.mp4?alt=media&token=6151b00b-d080-47eb-bf92-9a5d9a18bce7");//
         virtualGuideMaps.put("College of Arts and Sciences Faculty Office", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FMain%20Academic%20Building%2FCAS%20Faculty.mp4?alt=media&token=a01f3dcb-b272-462a-ad1e-595746e2f7ad");//
+        virtualGuideMaps.put("Dean’s Office – College of Engineering, Architecture and Technology", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FDr.%20Josefina%20Estolas%20Building%2FCEAT%20Dean%20Office.mp4?alt=media&token=d03b3734-307e-4f59-a952-e800d863aa1d");//
 
         return virtualGuideMaps;
     }
@@ -158,6 +165,7 @@ public class Constants {
         directoryMap.put("Wellness And Health Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
         directoryMap.put("Dr. Lydia M. Profeta Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
         directoryMap.put("Sen. Nepatali A. Gonzales Academic Hall", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/SNAGAH%20directory.png?raw=true");
+        directoryMap.put("Dr. Josefina Estolas Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/SNAGAH%20directory.png?raw=true");
         return directoryMap;
     }
 
