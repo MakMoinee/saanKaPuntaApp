@@ -165,7 +165,7 @@ public class Constants {
         directoryMap.put("Wellness And Health Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
         directoryMap.put("Dr. Lydia M. Profeta Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
         directoryMap.put("Sen. Nepatali A. Gonzales Academic Hall", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/SNAGAH%20directory.png?raw=true");
-        directoryMap.put("Dr. Josefina Estolas Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/SNAGAH%20directory.png?raw=true");
+        directoryMap.put("Dr. Josefina Estolas Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/directory%20estolas.png?raw=true");
         return directoryMap;
     }
 
