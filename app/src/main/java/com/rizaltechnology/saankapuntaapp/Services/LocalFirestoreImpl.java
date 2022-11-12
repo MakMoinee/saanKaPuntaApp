@@ -131,4 +131,45 @@ public class LocalFirestoreImpl implements LocalFireStore {
                     }
                 });
     }
+
+    @Override
+    public void forgotPassword(Users users, FireStoreListener listener) {
+        LocalHash hash = new LocalHash();
+        String hashPass = hash.makeHashPassword(users.getPassword());
+        users.setPassword(hashPass);
+        db.collection("user")
+                .whereEqualTo("email", users.getEmail())
+                .whereEqualTo("secret", users.getSecret())
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (queryDocumentSnapshots.isEmpty()) {
+                            listener.onAddUserError(new Exception("Wrong Username or Password"));
+                        } else {
+                            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                if (documentSnapshot.exists()) {
+                                    Log.e("SUCCESS", "onSuccess: DOCUMENT" + documentSnapshot.getId() + " ; " + documentSnapshot.getData());
+
+                                    Users users1 = documentSnapshot.toObject(Users.class);
+                                    users1.setPassword(hashPass);
+                                    users1.setDocID(documentSnapshot.getId());
+                                    updateUserRecord(users1, listener);
+
+                                } else {
+                                    listener.onAddUserError(new Exception("Wrong Username or Password"));
+                                }
+                            }
+
+                        }
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onAddUserError(e);
+                    }
+                });
+    }
 }

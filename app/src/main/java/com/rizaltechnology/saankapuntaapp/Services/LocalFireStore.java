@@ -13,4 +13,6 @@ public interface LocalFireStore {
     void getLogin(Users users, FireStoreListener listener);
 
     void storeBuildings(Buildings buildings, FireStoreListener listener);
+
+    void forgotPassword(Users users,FireStoreListener listener);
 }
