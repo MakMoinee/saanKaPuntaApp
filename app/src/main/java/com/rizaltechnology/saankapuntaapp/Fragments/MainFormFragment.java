@@ -21,6 +21,7 @@ import com.rizaltechnology.saankapuntaapp.Adapters.BuildingAdapter;
 import com.rizaltechnology.saankapuntaapp.Common.Constants;
 import com.rizaltechnology.saankapuntaapp.Interfaces.BuildingListener;
 import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
+import com.rizaltechnology.saankapuntaapp.Interfaces.MainButtonsListener;
 import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
 import com.rizaltechnology.saankapuntaapp.Models.Buildings;
 import com.rizaltechnology.saankapuntaapp.R;
@@ -35,7 +36,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
 
     private Context context;
     private RecyclerView recyclerView;
-    private ImageButton btnHome, btnSearch;
+    private ImageButton btnSettings, btnSearch;
     private List<Buildings> buildingsList = new ArrayList<>();
     private List<Buildings> origList = new ArrayList<>();
     private BuildingAdapter adapter;
@@ -48,6 +49,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
     private ArrayAdapter<String> adapterStr;
     private String lastSearchVal = "";
     private ImageButton btnProfile;
+    private MainButtonsListener mainBtnListener;
 
     private BuildingListener bListener = new BuildingListener() {
         @Override
@@ -62,9 +64,10 @@ public class MainFormFragment extends Fragment implements StorageListener {
     };
 
 
-    public MainFormFragment(Context mContext, FragmentFinish listener, boolean refresh) {
+    public MainFormFragment(Context mContext, FragmentFinish listener, boolean refresh, MainButtonsListener btn) {
         this.context = mContext;
         this.fn = listener;
+        this.mainBtnListener = btn;
         if (refresh) {
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -104,7 +107,13 @@ public class MainFormFragment extends Fragment implements StorageListener {
         btnProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mainBtnListener.onProfileClick();
+            }
+        });
+        btnSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainBtnListener.onNavClick();
             }
         });
     }
@@ -205,6 +214,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
         recyclerView.setVisibility(View.INVISIBLE);
         btnSearch = mView.findViewById(R.id.imgSearch);
         btnProfile = mView.findViewById(R.id.btnProfile);
+        btnSettings = mView.findViewById(R.id.btnSettings);
         storage = new Storage(this);
         buildingFilePaths = Constants.buildingFileFolder.split(",");
         currentFileIndex = 0;

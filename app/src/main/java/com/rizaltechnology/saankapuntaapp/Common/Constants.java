@@ -105,6 +105,12 @@ public class Constants {
         Map<String, Integer> buildingMaps = new HashMap<>();
         buildingMaps.put("Office of the Vice-President of Academic Affairs", R.string.locations_office_of_the_vice_president_of_academic_affairs);
         buildingMaps.put("College of Education Faculty Office", R.string.locations_college_of_education_faculty_office);
+
+
+        buildingMaps.put("Cashier Window", R.string.locations_cashier_window);
+        buildingMaps.put("Cashier Staff’s Office", R.string.locations_cashier_window);
+
+        buildingMaps.put("Registrar", R.string.locations_registrar);
         return buildingMaps;
     }
 
@@ -112,6 +118,11 @@ public class Constants {
         Map<String, Integer> buildingMaps = new HashMap<>();
         buildingMaps.put("Office of the Vice-President of Academic Affairs", R.string.directions_office_of_the_vice_president_of_academic_affairs);
         buildingMaps.put("College of Education Faculty Office", R.string.directions_college_of_education_faculty_office);
+
+        buildingMaps.put("Cashier Window", R.string.directions_cashier_window);
+        buildingMaps.put("Cashier Staff’s Office", R.string.directions_cashier_window);
+
+        buildingMaps.put("Registrar", R.string.directions_registrar);
         return buildingMaps;
     }
 
@@ -119,7 +130,9 @@ public class Constants {
         Map<String, String> floorMaps = new HashMap<>();
         floorMaps.put("Office of the Vice-President of Academic Affairs", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Lydia%20M.%20Profeta%20Building/1st%20floor%20-%20Profeta.jpg?raw=true");
         floorMaps.put("College of Education Faculty Office", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Sen.%20Nepatali%20A.%20Gonzales%20Academic%20Hall/8th%20Floor%20-%20SNAGAH.jpg?raw=true");
-
+        floorMaps.put("Cashier Window", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/1st%20Floor.PNG?raw=true");
+        floorMaps.put("Cashier Staff’s Office", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/1st%20Floor.PNG?raw=true");
+        floorMaps.put("Registrar", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Main%20Academic%20Building/Ground%20Floor.PNG?raw=true");
         return floorMaps;
     }
 
@@ -127,6 +140,9 @@ public class Constants {
         Map<String, String> virtualGuideMaps = new HashMap<>();
         virtualGuideMaps.put("Office of the Vice-President of Academic Affairs", "https://elako.net/videos/Office%20of%20the%20Vice%20President%20of%20Academic%20Affairs.mp4");
         virtualGuideMaps.put("College of Education Faculty Office", "https://elako.net/videos/College%20of%20Education%20Faculty%20Office.mp4");//
+        virtualGuideMaps.put("Cashier Staff’s Office", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FDr.%20Lydia%20M.%20Profeta%20Building%2FCashier.mp4?alt=media&token=3a1a5260-6613-4714-8c0b-0f0f4a479b95");//
+        virtualGuideMaps.put("Cashier Window", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FDr.%20Lydia%20M.%20Profeta%20Building%2FCashier.mp4?alt=media&token=3a1a5260-6613-4714-8c0b-0f0f4a479b95");//
+        virtualGuideMaps.put("Registrar", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FMain%20Academic%20Building%2FRegistrar.mp4?alt=media&token=6151b00b-d080-47eb-bf92-9a5d9a18bce7");//
 
         return virtualGuideMaps;
     }

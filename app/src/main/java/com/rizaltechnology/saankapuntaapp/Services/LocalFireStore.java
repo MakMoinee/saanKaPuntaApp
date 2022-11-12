@@ -8,6 +8,8 @@ public interface LocalFireStore {
 
     void insertUserRecord(Users users, FireStoreListener listener);
 
+    void updateUserRecord(Users users, FireStoreListener listener);
+
     void getLogin(Users users, FireStoreListener listener);
 
     void storeBuildings(Buildings buildings, FireStoreListener listener);

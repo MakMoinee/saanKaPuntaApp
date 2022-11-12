@@ -26,7 +26,7 @@ public class CreateAccountFragment extends Fragment {
 
     private Context mContext;
     private Button btnCreateAccount;
-    private EditText editEmail, editPassword, editConfirmPassword;
+    private EditText editEmail, editPassword, editConfirmPassword, editFN, editLN, editMN, editSecret;
     private FragmentFinish fn;
     private LocalFireStore fs;
     private ProgressDialog ps;
@@ -51,7 +51,13 @@ public class CreateAccountFragment extends Fragment {
                 String password = editPassword.getText().toString();
                 String repassword = editConfirmPassword.getText().toString();
 
-                if (editEmail.getText().toString().equals("") || editPassword.getText().toString().equals("") || editConfirmPassword.getText().toString().equals("")) {
+                if (editEmail.getText().toString().equals("") ||
+                        editPassword.getText().toString().equals("") ||
+                        editConfirmPassword.getText().toString().equals("") ||
+                        editFN.getText().toString().equals("") ||
+                        editMN.getText().toString().equals("") ||
+                        editLN.getText().toString().equals("") ||
+                        editSecret.getText().toString().equals("")) {
                     Toast.makeText(mContext, "Please Don't Leave Empty Fields", Toast.LENGTH_SHORT).show();
                 } else {
                     ps.show();
@@ -59,6 +65,10 @@ public class CreateAccountFragment extends Fragment {
                         Users user = new Users();
                         user.setEmail(editEmail.getText().toString());
                         user.setPassword(editPassword.getText().toString());
+                        user.setFirstName(editFN.getText().toString());
+                        user.setMiddleName(editMN.getText().toString());
+                        user.setLastName(editLN.getText().toString());
+                        user.setSecret(editSecret.getText().toString());
                         user.setUserType(2); // userType is 2 for client
                         fs.insertUserRecord(user, new FireStoreListener() {
                             @Override
@@ -76,6 +86,7 @@ public class CreateAccountFragment extends Fragment {
                         });
                     } else {
                         Toast.makeText(mContext, "Passwords Don't Match", Toast.LENGTH_SHORT).show();
+                        ps.dismiss();
                     }
                 }
             }
@@ -87,6 +98,10 @@ public class CreateAccountFragment extends Fragment {
         editPassword = mView.findViewById(R.id.editPassword);
         editConfirmPassword = mView.findViewById(R.id.editConfirmPassword);
         btnCreateAccount = mView.findViewById(R.id.btnCreateAccount);
+        editFN = mView.findViewById(R.id.editFN);
+        editLN = mView.findViewById(R.id.editLN);
+        editMN = mView.findViewById(R.id.editMN);
+        editSecret = mView.findViewById(R.id.editSecret);
         fs = new LocalFirestoreImpl(mView.getContext());
         ps = new ProgressDialog(mView.getContext());
         ps.setCancelable(false);

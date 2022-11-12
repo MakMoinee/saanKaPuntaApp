@@ -13,28 +13,28 @@
             android:id="@+id/tbUserProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/green_primary"
+            android:background="@color/purple_200"
             app:navigationIcon="@drawable/ic_baseline_arrow_back_24_white"
-            app:title="Username"
+            app:title="Profile"
             app:titleTextColor="@color/off_white" />
 
-<!--        <com.google.android.material.progressindicator.CircularProgressIndicator-->
-<!--            android:id="@+id/pbUserProfile"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:indeterminate="true"-->
-<!--            app:indicatorColor="@color/green_secondary"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.5"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+        <!--        <com.google.android.material.progressindicator.CircularProgressIndicator-->
+        <!--            android:id="@+id/pbUserProfile"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:indeterminate="true"-->
+        <!--            app:indicatorColor="@color/green_secondary"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.5"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent" />-->
 
         <LinearLayout
-            android:layout_marginTop="40dp"
             android:id="@+id/llUserProfileFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="40dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +61,7 @@
                     tools:ignore="ImageContrastCheck" />
 
                 <ImageView
+                    android:visibility="invisible"
                     android:id="@+id/ivUserProfilePictureUpdate"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
@@ -127,6 +128,7 @@
                 app:expandedHintEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"

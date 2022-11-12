@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.rizaltechnology.saankapuntaapp.Common.Common;
 import com.rizaltechnology.saankapuntaapp.Interfaces.FireStoreListener;
 import com.rizaltechnology.saankapuntaapp.Models.Buildings;
@@ -27,6 +28,25 @@ public class LocalFirestoreImpl implements LocalFireStore {
         db = FirebaseFirestore.getInstance();
     }
 
+    @Override
+    public void updateUserRecord(Users users, FireStoreListener listener) {
+        Map<String, Object> mapToInsert = Common.toLoginMaps(users);
+        db.collection("user")
+                .document(users.getDocID())
+                .set(mapToInsert, SetOptions.merge())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        listener.onAddUserSuccess(users);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.e("UPDATE_USER_RECORD", e.getMessage());
+                    }
+                });
+    }
 
     @Override
     public void insertUserRecord(Users users, FireStoreListener listener) {
@@ -73,7 +93,7 @@ public class LocalFirestoreImpl implements LocalFireStore {
                                         listener.onAddUserSuccess(users1);
                                     }
 
-                                }else {
+                                } else {
                                     listener.onAddUserError(new Exception("Wrong Username or Password"));
                                 }
                             }

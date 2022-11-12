@@ -122,7 +122,21 @@
                     android:text="Virtual Guide"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"
-                    android:visibility="gone" />
+                    android:visibility="invisible" />
+
+
+                <ImageButton
+                    android:id="@+id/btnMusic"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_below="@+id/imgNavGuide"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_music_on"
+                    android:visibility="invisible" />
 
                 <RelativeLayout
                     android:id="@+id/relativeVideo"
@@ -138,7 +152,7 @@
                     <SurfaceView
                         android:id="@+id/surfaceView"
                         android:layout_width="match_parent"
-                        android:layout_height="250dp"/>
+                        android:layout_height="250dp" />
 
                     <com.google.android.exoplayer2.ui.PlayerControlView
                         android:id="@+id/player"
@@ -165,6 +179,7 @@
                         android:text="Play"
                         android:textAllCaps="false"
                         android:textSize="20sp" />
+
                 </RelativeLayout>
             </RelativeLayout>
         </ScrollView>

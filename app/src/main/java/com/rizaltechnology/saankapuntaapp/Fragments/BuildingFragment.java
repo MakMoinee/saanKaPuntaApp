@@ -11,6 +11,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -24,6 +25,7 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
+import com.google.android.exoplayer2.extractor.Extractor;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerControlView;
@@ -52,9 +54,11 @@ public class BuildingFragment extends Fragment {
     SurfaceView surfaceView;
     ExoPlayer exoPlayer;
     RelativeLayout relativeVideo;
+    ImageButton btnMusic;
     Button btnPlay;
     String videoURL = "";
     String videoKey = "";
+    Boolean musicON = true;
 
     public BuildingFragment(Context mContext, Buildings buildings) {
         this.mContext = mContext;
@@ -83,6 +87,8 @@ public class BuildingFragment extends Fragment {
         TextView txtDirections = mView.findViewById(R.id.txtDirections);
         TextView lblNavGuide = mView.findViewById(R.id.lblNavGuide);
         TextView lblVirtualGuide = mView.findViewById(R.id.lblVirtualGuide);
+        btnMusic = mView.findViewById(R.id.btnMusic);
+        btnMusic.setVisibility(View.INVISIBLE);
         btnPlay = mView.findViewById(R.id.btnPlay);
         relativeVideo = mView.findViewById(R.id.relativeVideo);
         pbPlayer = mView.findViewById(R.id.pbPlayer);
@@ -178,6 +184,20 @@ public class BuildingFragment extends Fragment {
                 processVideo();
             }
         });
+        btnMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (musicON) {
+                    exoPlayer.setVolume(0f);
+                    btnMusic.setImageResource(R.drawable.ic_music_off);
+                    musicON = false;
+                } else {
+                    btnMusic.setImageResource(R.drawable.ic_music_on);
+                    exoPlayer.setVolume(1f);
+                    musicON = true;
+                }
+            }
+        });
         surfaceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -222,6 +242,9 @@ public class BuildingFragment extends Fragment {
         DataSource.Factory dataSourceFactory = new DefaultHttpDataSource.Factory();
         MediaSource videoSource = new ProgressiveMediaSource.Factory(dataSourceFactory).createMediaSource(item);
         exoPlayer.setMediaSource(videoSource);
+        player.setShowTimeoutMs(6500);
+        player.setShowNextButton(false);
+        player.setShowPreviousButton(false);
         exoPlayer.setVideoSurfaceView(surfaceView);
         exoPlayer.prepare();
         exoPlayer.setPlayWhenReady(true);
@@ -231,6 +254,7 @@ public class BuildingFragment extends Fragment {
                 switch (playbackState) {
                     case Player.STATE_READY:
                         pbPlayer.setVisibility(View.GONE);
+                        btnMusic.setVisibility(View.VISIBLE);
                         player.show();
                         break;
                 }
@@ -241,6 +265,7 @@ public class BuildingFragment extends Fragment {
             public void onPlayerError(PlaybackException error) {
                 pbPlayer.setVisibility(View.INVISIBLE);
                 btnPlay.setVisibility(View.VISIBLE);
+                btnMusic.setVisibility(View.INVISIBLE);
                 Player.Listener.super.onPlayerError(error);
             }
         });
