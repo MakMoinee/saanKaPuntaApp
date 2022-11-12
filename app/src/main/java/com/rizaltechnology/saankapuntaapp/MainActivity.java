@@ -17,6 +17,7 @@ import com.rizaltechnology.saankapuntaapp.Fragments.BuildingFragment;
 import com.rizaltechnology.saankapuntaapp.Fragments.CreateAccountFragment;
 import com.rizaltechnology.saankapuntaapp.Fragments.FirstFragment;
 import com.rizaltechnology.saankapuntaapp.Fragments.MainFormFragment;
+import com.rizaltechnology.saankapuntaapp.Fragments.ProfileFragment;
 import com.rizaltechnology.saankapuntaapp.Fragments.SecondFragment;
 import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
 import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
@@ -109,6 +110,16 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
         ft = fm.beginTransaction();
         ft.replace(R.id.frame, buildFragment, null);
         ft.addToBackStack("building");
+        ft.commit();
+    }
+
+    @Override
+    public void openProfileFragment() {
+        fragmentIndex = 5;
+        fragment = new ProfileFragment(MainActivity.this);
+        fm = getSupportFragmentManager();
+        ft = fm.beginTransaction();
+        ft.replace(R.id.frame, fragment, null);
         ft.commit();
     }
 

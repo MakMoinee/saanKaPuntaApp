@@ -107,6 +107,7 @@
                 android:padding="15dp">
 
                 <ImageButton
+                    android:id="@+id/btnProfile"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

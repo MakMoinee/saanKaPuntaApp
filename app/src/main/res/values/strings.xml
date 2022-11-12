@@ -107,4 +107,6 @@
         <item>Swimming Pool</item>
         <item>Basketball Court</item>
     </string-array>
+    <string name="icon_hint"><b>Icon</b></string>
+    <string name="update_username">Update username</string>
 </resources>

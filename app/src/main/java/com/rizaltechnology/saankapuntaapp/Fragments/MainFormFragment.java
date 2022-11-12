@@ -47,6 +47,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
     private String[] countries;
     private ArrayAdapter<String> adapterStr;
     private String lastSearchVal = "";
+    private ImageButton btnProfile;
 
     private BuildingListener bListener = new BuildingListener() {
         @Override
@@ -97,6 +98,12 @@ public class MainFormFragment extends Fragment implements StorageListener {
 
             @Override
             public void afterTextChanged(Editable s) {
+
+            }
+        });
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
             }
         });
@@ -197,6 +204,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
         recyclerView = mView.findViewById(R.id.recycler);
         recyclerView.setVisibility(View.INVISIBLE);
         btnSearch = mView.findViewById(R.id.imgSearch);
+        btnProfile = mView.findViewById(R.id.btnProfile);
         storage = new Storage(this);
         buildingFilePaths = Constants.buildingFileFolder.split(",");
         currentFileIndex = 0;

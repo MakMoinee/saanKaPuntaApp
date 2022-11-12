@@ -7,4 +7,5 @@ public interface FragmentFinish {
     void onFinishSecondFragment();
     void onLoginFinish();
     void openBuildingFragment(Buildings buildings);
+    void openProfileFragment();
 }
