@@ -34,14 +34,14 @@ public class SecondFragment extends Fragment {
     private Button btnLogin;
     private EditText editEmail, editPassword;
     private TextInputEditText editSecret, editPW, editConfirmPW, editForgotEmail;
-    private TextInputLayout layoutPW, layoutConfirmPW;
-    private Button btnSave;
+    private TextInputLayout layoutPW, layoutConfirmPW, layoutSecret;
+    private Button btnSave, txtForgotPassword;
     private FragmentFinish fn;
-    private TextView txtCreateAccount, txtForgotPassword;
+    private TextView txtCreateAccount;
     private LocalFireStore fs;
     private ProgressDialog pd;
     private AlertDialog fpAlertDialog;
-    private Boolean showPW = true;
+    private Boolean showPW = true, showCPW = true, showSecret = true;
 
     public SecondFragment(Context context, FragmentFinish finish) {
         mContext = context;
@@ -124,6 +124,37 @@ public class SecondFragment extends Fragment {
                 }
             }
         });
+
+        layoutConfirmPW.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showCPW) {
+                    layoutConfirmPW.setEndIconDrawable(R.drawable.ic_eye_off);
+                    editConfirmPW.setInputType(InputType.TYPE_CLASS_TEXT);
+                    showCPW = false;
+                } else {
+                    layoutConfirmPW.setEndIconDrawable(R.drawable.ic_eye);
+                    editConfirmPW.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    showCPW = true;
+                }
+            }
+        });
+
+        layoutSecret.setEndIconOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showSecret) {
+                    layoutSecret.setEndIconDrawable(R.drawable.ic_eye_off);
+                    editSecret.setInputType(InputType.TYPE_CLASS_TEXT);
+                    showSecret = false;
+                } else {
+                    layoutSecret.setEndIconDrawable(R.drawable.ic_eye);
+                    editSecret.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    showSecret = true;
+                }
+            }
+        });
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,7 +202,7 @@ public class SecondFragment extends Fragment {
         editForgotEmail = tView.findViewById(R.id.editForgotEmail);
         layoutPW = tView.findViewById(R.id.layoutPassword);
         layoutConfirmPW = tView.findViewById(R.id.layoutConfirmPassword);
-
+        layoutSecret = tView.findViewById(R.id.layoutSecret);
     }
 
     private void initViews(View mView) {

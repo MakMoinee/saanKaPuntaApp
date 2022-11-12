@@ -129,15 +129,18 @@
             android:textColor="@color/teal_200"
             android:textSize="18sp" />
 
-        <TextView
+        <Button
             android:id="@+id/txtForgotPassword"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtCreateAccount"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
             android:fontFamily="@font/roboto_boldcondensed"
             android:text="Forgot Password?"
+            android:textAllCaps="false"
             android:textColor="@color/teal_200"
             android:textSize="18sp" />
 
