@@ -41,7 +41,7 @@ public class Constants {
         buildingMaps.put("Registrar", "Main Academic Building");
         buildingMaps.put("DOST Office", "Main Academic Building");
         buildingMaps.put("Records Management Office", "Main Academic Building");
-        buildingMaps.put("College of Arts and Science Faculty Office", "Main Academic Building");
+        buildingMaps.put("College of Arts and Sciences Faculty Office", "Main Academic Building");
         buildingMaps.put("College of Arts and Sciences Reading Center", "Main Academic Building");
 
 
@@ -111,6 +111,7 @@ public class Constants {
         buildingMaps.put("Cashier Staff’s Office", R.string.locations_cashier_window);
 
         buildingMaps.put("Registrar", R.string.locations_registrar);
+        buildingMaps.put("College of Arts and Sciences Faculty Office", R.string.locations_cas_faculty);
         return buildingMaps;
     }
 
@@ -123,6 +124,8 @@ public class Constants {
         buildingMaps.put("Cashier Staff’s Office", R.string.directions_cashier_window);
 
         buildingMaps.put("Registrar", R.string.directions_registrar);
+        buildingMaps.put("College of Arts and Sciences Faculty Office", R.string.directions_cas_faculty);
+
         return buildingMaps;
     }
 
@@ -133,6 +136,7 @@ public class Constants {
         floorMaps.put("Cashier Window", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/1st%20Floor.PNG?raw=true");
         floorMaps.put("Cashier Staff’s Office", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Dr.%20Josefina%20Estolas%20Building/1st%20Floor.PNG?raw=true");
         floorMaps.put("Registrar", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Main%20Academic%20Building/Ground%20Floor.PNG?raw=true");
+        floorMaps.put("College of Arts and Sciences Faculty Office", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Main%20Academic%20Building/2nd%20Floor.PNG?raw=true");
         return floorMaps;
     }
 
@@ -143,12 +147,14 @@ public class Constants {
         virtualGuideMaps.put("Cashier Staff’s Office", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FDr.%20Lydia%20M.%20Profeta%20Building%2FCashier.mp4?alt=media&token=3a1a5260-6613-4714-8c0b-0f0f4a479b95");//
         virtualGuideMaps.put("Cashier Window", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FDr.%20Lydia%20M.%20Profeta%20Building%2FCashier.mp4?alt=media&token=3a1a5260-6613-4714-8c0b-0f0f4a479b95");//
         virtualGuideMaps.put("Registrar", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FMain%20Academic%20Building%2FRegistrar.mp4?alt=media&token=6151b00b-d080-47eb-bf92-9a5d9a18bce7");//
+        virtualGuideMaps.put("College of Arts and Sciences Faculty Office", "https://firebasestorage.googleapis.com/v0/b/saankapuntaapp.appspot.com/o/Virtual%20Guides%2FMain%20Academic%20Building%2FCAS%20Faculty.mp4?alt=media&token=a01f3dcb-b272-462a-ad1e-595746e2f7ad");//
 
         return virtualGuideMaps;
     }
 
     public static Map<String, String> getDirectoryMap() {
         Map<String, String> directoryMap = new HashMap<>();
+        directoryMap.put("Main Academic Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/buildings/Main%20Academic%20Building/directory.png?raw=true");
         directoryMap.put("Wellness And Health Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
         directoryMap.put("Dr. Lydia M. Profeta Building", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/Dr.%20Lydia%20M.%20Profeta%20Bldg%20Directory.png?raw=true");
         directoryMap.put("Sen. Nepatali A. Gonzales Academic Hall", "https://github.com/MakMoinee/saanKaPuntaApp/blob/main/directories/SNAGAH%20directory.png?raw=true");

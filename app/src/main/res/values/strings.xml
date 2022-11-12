@@ -9,12 +9,22 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="locations_cas_faculty">
+        - 2nd floor Main Academic Building
+    </string>
+    <string name="directions_cas_faculty">
+        -Go to Main Academic Building\n
+        -Take the Stairs to 2nd floor\n
+        -Go left\n
+        -Walk Straight until you end of the building\n
+        -Turn Right\n
+    </string>
 
     <string name="locations_registrar">
         - Ground Floor – Main Academic Building
     </string>
     <string name="directions_registrar">
-        - Go to the Ground Floor of Main Academic Building
+        - Go to the Ground Floor of Main Academic Building\n
         - Turn right
     </string>
 
@@ -22,7 +32,7 @@
         - Ground Floor – Dr. Lydia M. Profeta Building
     </string>
     <string name="directions_cashier_window">
-        - Go to the ground floor of Dr. Lydia M. Profeta Building
+        - Go to the ground floor of Dr. Lydia M. Profeta Building\n
         - Turn right upon entering the Building
     </string>
     <string name="locations_college_of_education_faculty_office">
@@ -68,7 +78,7 @@
         <item>Registrar</item>
         <item>DOST Office</item>
         <item>Records Management Office</item>
-        <item>College of Arts and Science Faculty Office</item>
+        <item>College of Arts and Sciences Faculty Office</item>
         <item>College of Arts and Sciences Reading Center</item>
         <item>Main Library</item> <!--4th Building Sen. Naptili -->
         <item>Information Technology Library</item>

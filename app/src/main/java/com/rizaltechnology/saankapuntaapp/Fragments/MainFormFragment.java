@@ -182,7 +182,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
             Storage searchStorage = new Storage(storageSearchListener);
             searchStorage.getBuildingsFromStorage(storageName);
         } else {
-            Log.e("STORAGE_NAME", storageName);
+            Log.e("STORAGE_NAME", storageName.toString());
             List<Buildings> newBuilding = new ArrayList<>();
             for (Buildings b : buildingsList) {
                 String buildName = b.getBuildingName().replaceAll(".jpg", "");
