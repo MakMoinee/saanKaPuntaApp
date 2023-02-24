@@ -1,9 +1,9 @@
-package com.rizaltechnology.saankapuntaapp.Preferrences;
+package com.sample.clinic.Preferrences;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.rizaltechnology.saankapuntaapp.Models.Users;
+import com.sample.clinic.Models.Users;
 
 public class MyUserPreferrence {
 

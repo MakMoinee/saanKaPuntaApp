@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Models;
+package com.sample.clinic.Models;
 
 import lombok.Data;
 

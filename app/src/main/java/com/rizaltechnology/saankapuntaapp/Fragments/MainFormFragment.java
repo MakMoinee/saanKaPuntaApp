@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Fragments;
+package com.sample.clinic.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,15 +17,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rizaltechnology.saankapuntaapp.Adapters.BuildingAdapter;
-import com.rizaltechnology.saankapuntaapp.Common.Constants;
-import com.rizaltechnology.saankapuntaapp.Interfaces.BuildingListener;
-import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
-import com.rizaltechnology.saankapuntaapp.Interfaces.MainButtonsListener;
-import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
-import com.rizaltechnology.saankapuntaapp.Models.Buildings;
-import com.rizaltechnology.saankapuntaapp.R;
-import com.rizaltechnology.saankapuntaapp.Services.Storage;
+import com.sample.clinic.Adapters.BuildingAdapter;
+import com.sample.clinic.Common.Constants;
+import com.sample.clinic.Interfaces.BuildingListener;
+import com.sample.clinic.Interfaces.FragmentFinish;
+import com.sample.clinic.Interfaces.MainButtonsListener;
+import com.sample.clinic.Interfaces.StorageListener;
+import com.sample.clinic.Models.Buildings;
+import com.sample.clinic.R;
+import com.sample.clinic.Services.Storage;
 
 import java.util.ArrayList;
 import java.util.List;

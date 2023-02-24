@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:800440263463:android:ab85a5dce33eeeb3f07f02",
         "android_client_info": {
-          "package_name": "com.rizaltechnology.saankapuntaapp"
+          "package_name": "com.sample.clinic"
         }
       },
       "oauth_client": [

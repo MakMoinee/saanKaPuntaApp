@@ -1,6 +1,6 @@
-package com.rizaltechnology.saankapuntaapp.Interfaces;
+package com.sample.clinic.Interfaces;
 
-import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.sample.clinic.Models.Buildings;
 
 public interface FragmentFinish {
     void onFinishFirstFragment();

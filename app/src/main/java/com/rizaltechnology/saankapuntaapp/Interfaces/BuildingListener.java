@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Interfaces;
+package com.sample.clinic.Interfaces;
 
 import android.view.View;
 

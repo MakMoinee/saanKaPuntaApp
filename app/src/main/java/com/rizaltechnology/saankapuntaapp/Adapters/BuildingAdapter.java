@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Adapters;
+package com.sample.clinic.Adapters;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,9 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rizaltechnology.saankapuntaapp.Interfaces.BuildingListener;
-import com.rizaltechnology.saankapuntaapp.Models.Buildings;
-import com.rizaltechnology.saankapuntaapp.R;
+import com.sample.clinic.Interfaces.BuildingListener;
+import com.sample.clinic.Models.Buildings;
+import com.sample.clinic.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;

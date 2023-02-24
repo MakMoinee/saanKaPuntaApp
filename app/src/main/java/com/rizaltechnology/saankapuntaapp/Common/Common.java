@@ -1,7 +1,7 @@
-package com.rizaltechnology.saankapuntaapp.Common;
+package com.sample.clinic.Common;
 
-import com.rizaltechnology.saankapuntaapp.Models.Buildings;
-import com.rizaltechnology.saankapuntaapp.Models.Users;
+import com.sample.clinic.Models.Buildings;
+import com.sample.clinic.Models.Users;
 
 import java.util.HashMap;
 import java.util.Map;

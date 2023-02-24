@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Fragments;
+package com.sample.clinic.Fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,8 +11,8 @@ import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 
-import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
-import com.rizaltechnology.saankapuntaapp.R;
+import com.sample.clinic.Interfaces.FragmentFinish;
+import com.sample.clinic.R;
 
 public class FirstFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Fragments;
+package com.sample.clinic.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -31,11 +31,11 @@ import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
-import com.rizaltechnology.saankapuntaapp.Common.Constants;
-import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
-import com.rizaltechnology.saankapuntaapp.Models.Buildings;
-import com.rizaltechnology.saankapuntaapp.R;
-import com.rizaltechnology.saankapuntaapp.Services.Storage;
+import com.sample.clinic.Common.Constants;
+import com.sample.clinic.Interfaces.StorageListener;
+import com.sample.clinic.Models.Buildings;
+import com.sample.clinic.R;
+import com.sample.clinic.Services.Storage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;

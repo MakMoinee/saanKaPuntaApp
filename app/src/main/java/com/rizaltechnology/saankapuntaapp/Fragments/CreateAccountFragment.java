@@ -1,4 +1,4 @@
-package com.rizaltechnology.saankapuntaapp.Fragments;
+package com.sample.clinic.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,13 +14,13 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.firestore.DocumentReference;
-import com.rizaltechnology.saankapuntaapp.Interfaces.FireStoreListener;
-import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
-import com.rizaltechnology.saankapuntaapp.Models.Users;
-import com.rizaltechnology.saankapuntaapp.R;
-import com.rizaltechnology.saankapuntaapp.Services.LocalFireStore;
-import com.rizaltechnology.saankapuntaapp.Services.LocalFirestoreImpl;
-import com.rizaltechnology.saankapuntaapp.Services.LocalHash;
+import com.sample.clinic.Interfaces.FireStoreListener;
+import com.sample.clinic.Interfaces.FragmentFinish;
+import com.sample.clinic.Models.Users;
+import com.sample.clinic.R;
+import com.sample.clinic.Services.LocalFireStore;
+import com.sample.clinic.Services.LocalFirestoreImpl;
+import com.sample.clinic.Services.LocalHash;
 
 public class CreateAccountFragment extends Fragment {
 
