@@ -1,4 +1,4 @@
-package com.sample.clinic.Fragments;
+package com.rizaltechnology.saankapuntaapp.Fragments;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -20,13 +20,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.auth.User;
-import com.sample.clinic.Interfaces.FireStoreListener;
-import com.sample.clinic.Interfaces.FragmentFinish;
-import com.sample.clinic.Models.Users;
-import com.sample.clinic.Preferrences.MyUserPreferrence;
-import com.sample.clinic.R;
-import com.sample.clinic.Services.LocalFireStore;
-import com.sample.clinic.Services.LocalFirestoreImpl;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FireStoreListener;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
+import com.rizaltechnology.saankapuntaapp.Models.Users;
+import com.rizaltechnology.saankapuntaapp.Preferrences.MyUserPreferrence;
+import com.rizaltechnology.saankapuntaapp.R;
+import com.rizaltechnology.saankapuntaapp.Services.LocalFireStore;
+import com.rizaltechnology.saankapuntaapp.Services.LocalFirestoreImpl;
 
 public class SecondFragment extends Fragment {
 

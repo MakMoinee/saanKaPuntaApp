@@ -1,4 +1,4 @@
-package com.sample.clinic.Interfaces;
+package com.rizaltechnology.saankapuntaapp.Interfaces;
 
 public interface ProfileListener {
     void onBackPressed();

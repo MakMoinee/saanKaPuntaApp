@@ -1,4 +1,4 @@
-package com.sample.clinic.Services;
+package com.rizaltechnology.saankapuntaapp.Services;
 
 import android.net.Uri;
 import android.util.Log;
@@ -12,9 +12,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
-import com.sample.clinic.Common.Constants;
-import com.sample.clinic.Interfaces.StorageListener;
-import com.sample.clinic.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Common.Constants;
+import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
+import com.rizaltechnology.saankapuntaapp.Models.Buildings;
 
 import java.util.ArrayList;
 import java.util.HashMap;

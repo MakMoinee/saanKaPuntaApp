@@ -1,4 +1,4 @@
-package com.sample.clinic;
+package com.rizaltechnology.saankapuntaapp;
 
 import org.junit.Test;
 

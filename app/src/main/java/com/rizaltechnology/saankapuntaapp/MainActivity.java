@@ -1,4 +1,4 @@
-package com.sample.clinic;
+package com.rizaltechnology.saankapuntaapp;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -14,21 +14,21 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.sample.clinic.Common.Constants;
-import com.sample.clinic.Fragments.BuildingFragment;
-import com.sample.clinic.Fragments.CreateAccountFragment;
-import com.sample.clinic.Fragments.FirstFragment;
-import com.sample.clinic.Fragments.MainFormFragment;
-import com.sample.clinic.Fragments.ProfileFragment;
-import com.sample.clinic.Fragments.SecondFragment;
-import com.sample.clinic.Interfaces.FragmentFinish;
-import com.sample.clinic.Interfaces.MainButtonsListener;
-import com.sample.clinic.Interfaces.ProfileListener;
-import com.sample.clinic.Interfaces.StorageListener;
-import com.sample.clinic.Models.Buildings;
-import com.sample.clinic.Models.Users;
-import com.sample.clinic.Preferrences.MyUserPreferrence;
-import com.sample.clinic.Services.Storage;
+import com.rizaltechnology.saankapuntaapp.Common.Constants;
+import com.rizaltechnology.saankapuntaapp.Fragments.BuildingFragment;
+import com.rizaltechnology.saankapuntaapp.Fragments.CreateAccountFragment;
+import com.rizaltechnology.saankapuntaapp.Fragments.FirstFragment;
+import com.rizaltechnology.saankapuntaapp.Fragments.MainFormFragment;
+import com.rizaltechnology.saankapuntaapp.Fragments.ProfileFragment;
+import com.rizaltechnology.saankapuntaapp.Fragments.SecondFragment;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
+import com.rizaltechnology.saankapuntaapp.Interfaces.MainButtonsListener;
+import com.rizaltechnology.saankapuntaapp.Interfaces.ProfileListener;
+import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
+import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Models.Users;
+import com.rizaltechnology.saankapuntaapp.Preferrences.MyUserPreferrence;
+import com.rizaltechnology.saankapuntaapp.Services.Storage;
 
 import org.checkerframework.checker.units.qual.A;
 

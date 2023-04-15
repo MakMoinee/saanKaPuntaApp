@@ -1,4 +1,4 @@
-package com.sample.clinic.Services;
+package com.rizaltechnology.saankapuntaapp.Services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 

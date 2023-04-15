@@ -1,7 +1,7 @@
-package com.sample.clinic.Interfaces;
+package com.rizaltechnology.saankapuntaapp.Interfaces;
 
 import com.google.firebase.firestore.DocumentReference;
-import com.sample.clinic.Models.Users;
+import com.rizaltechnology.saankapuntaapp.Models.Users;
 
 public interface FireStoreListener {
     void onAddUserSuccess(Users users);

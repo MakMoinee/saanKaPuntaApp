@@ -1,6 +1,6 @@
-package com.sample.clinic.Common;
+package com.rizaltechnology.saankapuntaapp.Common;
 
-import com.sample.clinic.R;
+import com.rizaltechnology.saankapuntaapp.R;
 
 import java.util.HashMap;
 import java.util.List;

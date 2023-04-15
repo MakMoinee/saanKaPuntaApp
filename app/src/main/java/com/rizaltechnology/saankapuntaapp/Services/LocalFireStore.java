@@ -1,8 +1,8 @@
-package com.sample.clinic.Services;
+package com.rizaltechnology.saankapuntaapp.Services;
 
-import com.sample.clinic.Interfaces.FireStoreListener;
-import com.sample.clinic.Models.Buildings;
-import com.sample.clinic.Models.Users;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FireStoreListener;
+import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Models.Users;
 
 public interface LocalFireStore {
 

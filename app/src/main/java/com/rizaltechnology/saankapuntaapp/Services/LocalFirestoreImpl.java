@@ -1,4 +1,4 @@
-package com.sample.clinic.Services;
+package com.rizaltechnology.saankapuntaapp.Services;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,10 +11,10 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
-import com.sample.clinic.Common.Common;
-import com.sample.clinic.Interfaces.FireStoreListener;
-import com.sample.clinic.Models.Buildings;
-import com.sample.clinic.Models.Users;
+import com.rizaltechnology.saankapuntaapp.Common.Common;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FireStoreListener;
+import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Models.Users;
 
 import java.util.Map;
 
