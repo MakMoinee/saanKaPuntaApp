@@ -25,24 +25,22 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.Player;
-import com.google.android.exoplayer2.extractor.Extractor;
 import com.google.android.exoplayer2.source.MediaSource;
 import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource;
 import com.rizaltechnology.saankapuntaapp.Common.Constants;
-import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
 import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Models.Offices;
 import com.rizaltechnology.saankapuntaapp.R;
-import com.rizaltechnology.saankapuntaapp.Services.Storage;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BuildingFragment extends Fragment {
 
@@ -60,9 +58,15 @@ public class BuildingFragment extends Fragment {
     String videoKey = "";
     Boolean musicON = true;
 
-    public BuildingFragment(Context mContext, Buildings buildings) {
+    Offices offices;
+
+    List<String> officeStrList;
+
+    public BuildingFragment(Context mContext, Buildings buildings, Offices o, List<String> l) {
         this.mContext = mContext;
         this.buildings = buildings;
+        this.offices = o;
+        this.officeStrList = l;
     }
 
     @Nullable
@@ -74,6 +78,7 @@ public class BuildingFragment extends Fragment {
     }
 
     private void initViews(View mView) {
+
         ProgressDialog pd = new ProgressDialog(mContext);
         pd.setMessage("Loading info ...");
         pd.setCancelable(false);
@@ -98,15 +103,8 @@ public class BuildingFragment extends Fragment {
         player.hide();
         initListeners();
 
-        Map<String, String> directoryMap = Constants.getDirectoryMap();
-        if (directoryMap.containsKey(buildings.getBuildingName())) {
-            buildings.setPicturePath(directoryMap.get(buildings.getBuildingName()));
-        }
-
-
-        Map<String, Integer> locationMap = Constants.getLocationsMap();
-        Map<String, Integer> directionsMap = Constants.getDirectionsMap();
-        Uri uri = Uri.parse(buildings.getPicturePath());
+        String url = Constants.webAminHost + buildings.getPosterPath();
+        Uri uri = Uri.parse(url);
         Picasso.get().invalidate(uri);
         Picasso.get().load(uri)
                 .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
@@ -118,52 +116,73 @@ public class BuildingFragment extends Fragment {
                         String locationKey = "";
                         if (buildings.getDescription().equals("")) {
                             lblTitle.setText(buildings.getBuildingName());
-                            locationKey = buildings.getBuildingName();
-                            videoKey = locationKey;
-
-                        } else {
-                            lblTitle.setText(buildings.getDescription());
-                            locationKey = buildings.getDescription();
-                            loadNavGuide(imgNavGuide, locationKey, lblNavGuide);
-                            videoKey = locationKey;
-                        }
-                        boolean hasThatLocation = locationMap.containsKey(locationKey);
-
-                        if (hasThatLocation) {
-                            int locationStringId = locationMap.get(locationKey);
-                            lblLocation.setVisibility(View.VISIBLE);
-                            txtLocation.setVisibility(View.VISIBLE);
-                            txtLocation.setText(locationStringId);
-                        }
-
-                        boolean hasThatDirection = directionsMap.containsKey(locationKey);
-
-                        if (hasThatDirection) {
-                            int directionStringId = directionsMap.get(locationKey);
-                            lblDirections.setVisibility(View.VISIBLE);
-                            txtDirections.setVisibility(View.VISIBLE);
-                            txtDirections.setText(directionStringId);
-                        }
-
-                        if (!hasThatDirection && !hasThatLocation) {
-                            Map<String, String> buildingMaps = Constants.getBuildingMaps();
+                            videoKey = "";
+                            String data = "List of Offices Within This Building:\n\n";
+                            for (String str : officeStrList) data += "- " + str + "\n";
                             lblLocation.setVisibility(View.GONE);
                             txtLocation.setVisibility(View.VISIBLE);
-                            String data = "List of Offices Within This Building:\n\n";
-                            for (Map.Entry<String, String> entry : buildingMaps.entrySet()) {
-                                Log.e("entry key", entry.getKey());
-                                Log.e("entry val", entry.getValue());
-                                if (entry.getValue().equals(locationKey)) {
-                                    data += "- " + entry.getKey() + "\n";
-
-                                }
-                            }
                             txtLocation.setText(data);
                         } else {
+                            lblTitle.setText(buildings.getDescription());
+                            if (offices != null) {
+                                if (offices.getFloor() != "") {
+                                    String locationRaw = String.format("%s - %s", offices.getFloor(), buildings.getBuildingName());
+                                    lblLocation.setVisibility(View.VISIBLE);
+                                    txtLocation.setVisibility(View.VISIBLE);
+                                    txtLocation.setText(locationRaw);
+                                }
+
+                                if (offices.getDirections() != "") {
+                                    lblDirections.setVisibility(View.VISIBLE);
+                                    txtDirections.setVisibility(View.VISIBLE);
+                                    txtDirections.setText(offices.getDirections());
+                                }
+
+                                loadNavGuide(imgNavGuide, offices.getFloorMapPath(), lblNavGuide);
+                                videoKey = offices.getVideoURL();
+                            }
+
+                        }
+//                        boolean hasThatLocation = locationMap.containsKey(locationKey);
+//
+//                        if (hasThatLocation) {
+//                            int locationStringId = locationMap.get(locationKey);
+//                            lblLocation.setVisibility(View.VISIBLE);
+//                            txtLocation.setVisibility(View.VISIBLE);
+//                            txtLocation.setText(locationStringId);
+//                        }
+//
+//                        boolean hasThatDirection = directionsMap.containsKey(locationKey);
+//
+//                        if (hasThatDirection) {
+//                            int directionStringId = directionsMap.get(locationKey);
+//                            lblDirections.setVisibility(View.VISIBLE);
+//                            txtDirections.setVisibility(View.VISIBLE);
+//                            txtDirections.setText(directionStringId);
+//                        }
+//
+//                        if (!hasThatDirection && !hasThatLocation) {
+//                            Map<String, String> buildingMaps = Constants.getBuildingMaps();
+//                            lblLocation.setVisibility(View.GONE);
+//                            txtLocation.setVisibility(View.VISIBLE);
+//                            String data = "List of Offices Within This Building:\n\n";
+//                            for (Map.Entry<String, String> entry : buildingMaps.entrySet()) {
+//                                Log.e("entry key", entry.getKey());
+//                                Log.e("entry val", entry.getValue());
+//                                if (entry.getValue().equals(locationKey)) {
+//                                    data += "- " + entry.getKey() + "\n";
+//
+//                                }
+//                            }
+//                            txtLocation.setText(data);
+//                        } else {
+//                            lblVirtualGuide.setVisibility(View.VISIBLE);
+//                            relativeVideo.setVisibility(View.VISIBLE);
+//                        }
+                        if (videoKey != "") {
                             lblVirtualGuide.setVisibility(View.VISIBLE);
                             relativeVideo.setVisibility(View.VISIBLE);
                         }
-
 
                     }
 
@@ -216,18 +235,18 @@ public class BuildingFragment extends Fragment {
     }
 
     private void processVideo() {
-        Map<String, String> videoMaps = Constants.getVirtualGuideMap();
+//        Map<String, String> videoMaps = Constants.getVirtualGuideMap();
+//
+//        Log.e("VIDEOKEY", videoKey);
+//        if (videoKey == "") {
+//            return;
+//        }
+//        if (!videoMaps.containsKey(videoKey)) {
+//            Log.e("VIDEOKEY3", videoKey);
+//            return;
+//        }
 
-        Log.e("VIDEOKEY", videoKey);
-        if (videoKey == "") {
-            return;
-        }
-        if (!videoMaps.containsKey(videoKey)) {
-            Log.e("VIDEOKEY3", videoKey);
-            return;
-        }
-
-        String videoURL = videoMaps.get(videoKey);
+        String videoURL = Constants.webAminHost + videoKey;
         Log.e("videoURL", videoURL);
         buildings.setVideoPath(videoURL);
         playVideo(buildings);
@@ -274,12 +293,8 @@ public class BuildingFragment extends Fragment {
     }
 
     private void loadNavGuide(ImageView img, String key, TextView lblNavGuide) {
-        Map<String, String> floorMaps = Constants.getFloorMap();
 
-        if (!floorMaps.containsKey(key)) {
-            return;
-        }
-        String fileName = floorMaps.get(key);
+        String fileName = Constants.webAminHost + key;
 
         Uri uri = Uri.parse(fileName);
         Picasso.get().invalidate(uri);
