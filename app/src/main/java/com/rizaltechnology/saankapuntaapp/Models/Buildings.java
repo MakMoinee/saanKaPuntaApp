@@ -8,5 +8,6 @@ public class Buildings {
     private String buildingName;
     private String description;
     private String picturePath;
+    private String posterPath;
     private String videoPath;
 }

@@ -26,6 +26,7 @@ import com.rizaltechnology.saankapuntaapp.Interfaces.MainButtonsListener;
 import com.rizaltechnology.saankapuntaapp.Interfaces.ProfileListener;
 import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
 import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Models.Offices;
 import com.rizaltechnology.saankapuntaapp.Models.Users;
 import com.rizaltechnology.saankapuntaapp.Preferrences.MyUserPreferrence;
 import com.rizaltechnology.saankapuntaapp.Services.Storage;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
                     }
                 }
             };
-            nBuilder.setMessage("Do you want to proceed signinig out?")
+            nBuilder.setMessage("Do you want to proceed signing out?")
                     .setNegativeButton("Yes", dListener)
                     .setPositiveButton("No", dListener)
                     .setCancelable(false);
@@ -143,9 +144,9 @@ public class MainActivity extends AppCompatActivity implements FragmentFinish {
     }
 
     @Override
-    public void openBuildingFragment(Buildings buildings) {
+    public void openBuildingFragment(Buildings buildings, Offices o, List<String> l) {
         fragmentIndex = 4;
-        buildFragment = new BuildingFragment(MainActivity.this, buildings);
+        buildFragment = new BuildingFragment(MainActivity.this, buildings, o, l);
         fm = getSupportFragmentManager();
         ft = fm.beginTransaction();
         ft.replace(R.id.frame, buildFragment, null);

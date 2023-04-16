@@ -12,6 +12,8 @@ public class Constants {
     public static final String buildingFileFolder = "Dr. Josefina Estolas Building,Dr. Lydia M. Profeta Building,Main Academic Building,Old Building,Research And Development Building,Sen. Nepatali A. Gonzales Academic Hall,Wellness And Health Building";
     public static final String buildingPath = "Buildings/";
     public static final String postersPath = "Posters/";
+
+    public static final String webAminHost = "http://192.168.137.32:8443";
     public static final String virtualGuidePath = "Virtual Guides/";
 
     public static Map<String, String> getBuildingMaps() {

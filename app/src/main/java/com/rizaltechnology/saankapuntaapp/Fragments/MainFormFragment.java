@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,14 +21,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.rizaltechnology.saankapuntaapp.Adapters.BuildingAdapter;
 import com.rizaltechnology.saankapuntaapp.Common.Constants;
 import com.rizaltechnology.saankapuntaapp.Interfaces.BuildingListener;
+import com.rizaltechnology.saankapuntaapp.Interfaces.FireStoreListener;
 import com.rizaltechnology.saankapuntaapp.Interfaces.FragmentFinish;
 import com.rizaltechnology.saankapuntaapp.Interfaces.MainButtonsListener;
 import com.rizaltechnology.saankapuntaapp.Interfaces.StorageListener;
 import com.rizaltechnology.saankapuntaapp.Models.Buildings;
+import com.rizaltechnology.saankapuntaapp.Models.Offices;
 import com.rizaltechnology.saankapuntaapp.R;
+import com.rizaltechnology.saankapuntaapp.Services.LocalFirestore2;
 import com.rizaltechnology.saankapuntaapp.Services.Storage;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +55,10 @@ public class MainFormFragment extends Fragment implements StorageListener {
     private String lastSearchVal = "";
     private ImageButton btnProfile;
     private MainButtonsListener mainBtnListener;
+    List<Offices> officeList = new ArrayList<>();
+
+    LocalFirestore2 fs;
+    Offices selectedOffice;
 
     private BuildingListener bListener = new BuildingListener() {
         @Override
@@ -58,7 +67,41 @@ public class MainFormFragment extends Fragment implements StorageListener {
             String buildName = buildings.getBuildingName().replaceAll(".jpg", "");
             buildings.setDescription(lastSearchVal);
             buildings.setBuildingName(buildName);
-            fn.openBuildingFragment(buildings);
+            selectedOffice = new Offices();
+            List<String> stringList = new ArrayList<>();
+            if (officeList.size() == 0) {
+                fs.getOffices(new FireStoreListener() {
+                    @Override
+                    public void onError() {
+                        FireStoreListener.super.onError();
+                    }
+
+                    @Override
+                    public void onSuccessOffice(List<Offices> o) {
+                        officeList = o;
+                        for (Offices offices : officeList) {
+                            if (offices.getOfficeName().equals(lastSearchVal)) {
+                                selectedOffice = offices;
+                            }
+                            if (offices.getBuilding().equals(buildings.getDocID())) {
+                                stringList.add(offices.getOfficeName());
+                            }
+                        }
+                        fn.openBuildingFragment(buildings, selectedOffice, stringList);
+                    }
+                });
+            } else {
+                for (Offices offices : officeList) {
+                    if (offices.getOfficeName().equals(lastSearchVal)) {
+                        selectedOffice = offices;
+                    }
+                    if (buildings.getDocID().equals(offices.getBuilding())) {
+                        stringList.add(offices.getOfficeName());
+                    }
+                }
+                fn.openBuildingFragment(buildings, selectedOffice, stringList);
+            }
+
 
         }
     };
@@ -72,7 +115,48 @@ public class MainFormFragment extends Fragment implements StorageListener {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    storage.getBuildingsPoster();
+                    fs.getBuildings(new FireStoreListener() {
+                        @Override
+                        public void onError() {
+                            FireStoreListener.super.onError();
+                        }
+
+                        @Override
+                        public void onSuccess(List<Buildings> b) {
+                            origList = new ArrayList<>();
+                            buildingsList = new ArrayList<>();
+                            for (Buildings buildings : b) {
+                                buildingsList.add(buildings);
+                                origList.add(buildings);
+                            }
+
+                            adapter = new BuildingAdapter(context, buildingsList, bListener);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                            recyclerView.setAdapter(adapter);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    recyclerView.setVisibility(View.VISIBLE);
+                                }
+                            }, 50);
+                        }
+                    });
+
+                    fs.getOffices(new FireStoreListener() {
+                        @Override
+                        public void onError() {
+                            FireStoreListener.super.onError();
+                        }
+
+                        @Override
+                        public void onSuccessOffice(List<Offices> o) {
+                            List<String> officeArray = new ArrayList<>();
+                            for (Offices offices : o) officeArray.add(offices.getOfficeName());
+                            countries = officeArray.toArray(new String[officeArray.size()]);
+                            adapterStr = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, countries);
+                            txtSearch.setAdapter(adapterStr);
+                        }
+                    });
                 }
             }, 50);
         }
@@ -143,44 +227,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
 
 
         if (buildingsList.size() == 0) {
-            StorageListener storageSearchListener = new StorageListener() {
-                @Override
-                public void onSuccess(String data) {
 
-                }
-
-                @Override
-                public void onSuccessBuilding(List<Buildings> b) {
-                    buildingsList = b;
-                    adapter = new BuildingAdapter(context, buildingsList, bListener);
-                    recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-                    recyclerView.setAdapter(adapter);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            recyclerView.setVisibility(View.VISIBLE);
-                        }
-                    }, 500);
-                }
-
-                @Override
-                public void onError(Exception e) {
-
-                }
-
-                @Override
-                public void onSuccessRetrieveNavGuide(Buildings buildings) {
-
-                }
-
-                @Override
-                public void onSuccessRetrieveVideoURL(Buildings buildings) {
-
-                }
-            };
-
-            Storage searchStorage = new Storage(storageSearchListener);
-            searchStorage.getBuildingsFromStorage(storageName);
         } else {
             Log.e("STORAGE_NAME", storageName.toString());
             List<Buildings> newBuilding = new ArrayList<>();
@@ -209,6 +256,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
     }
 
     private void initViews(View mView) {
+        fs = new LocalFirestore2();
         txtSearch = mView.findViewById(R.id.editSearch);
         recyclerView = mView.findViewById(R.id.recycler);
         recyclerView.setVisibility(View.INVISIBLE);
@@ -219,13 +267,53 @@ public class MainFormFragment extends Fragment implements StorageListener {
         buildingFilePaths = Constants.buildingFileFolder.split(",");
         currentFileIndex = 0;
 //        storage.getBuildingsFromStorage(buildingFilePaths[0]);
-        storage.getBuildingsPoster();
+        fs.getBuildings(new FireStoreListener() {
+            @Override
+            public void onError() {
+                FireStoreListener.super.onError();
+            }
 
-        countries = getResources().getStringArray(R.array.search_array);
+            @Override
+            public void onSuccess(List<Buildings> b) {
+                origList = new ArrayList<>();
+                buildingsList = new ArrayList<>();
+                for (Buildings buildings : b) {
+                    buildingsList.add(buildings);
+                    origList.add(buildings);
+                }
+
+                adapter = new BuildingAdapter(context, buildingsList, bListener);
+                recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                recyclerView.setAdapter(adapter);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recyclerView.setVisibility(View.VISIBLE);
+                    }
+                }, 50);
+            }
+        });
+
+
+        fs.getOffices(new FireStoreListener() {
+            @Override
+            public void onError() {
+                Toast.makeText(context, "There are no offices available yet", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onSuccessOffice(List<Offices> o) {
+                officeList = o;
+                List<String> officeArray = new ArrayList<>();
+                for (Offices offices : o) officeArray.add(offices.getOfficeName());
+                countries = officeArray.toArray(new String[officeArray.size()]);
+                adapterStr = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, countries);
+                txtSearch.setAdapter(adapterStr);
+            }
+        });
+//        countries = getResources().getStringArray(R.array.search_array);
         // Create the adapter and set it to the AutoCompleteTextView
-        adapterStr = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, countries);
 
-        txtSearch.setAdapter(adapterStr);
     }
 
 

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.rizaltechnology.saankapuntaapp.Common.Constants;
 import com.rizaltechnology.saankapuntaapp.Interfaces.BuildingListener;
 import com.rizaltechnology.saankapuntaapp.Models.Buildings;
 import com.rizaltechnology.saankapuntaapp.R;
@@ -43,7 +44,8 @@ public class BuildingAdapter extends RecyclerView.Adapter<BuildingAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Buildings buildings = buildingsList.get(position);
-        Uri uri = Uri.parse(buildings.getPicturePath());
+        String url = Constants.webAminHost + buildings.getPosterPath();
+        Uri uri = Uri.parse(url);
         String buildName = buildings.getBuildingName().replaceAll(".jpg", "");
 //        holder.itemView.setVisibility(View.INVISIBLE);
         Picasso.get().invalidate(uri);
