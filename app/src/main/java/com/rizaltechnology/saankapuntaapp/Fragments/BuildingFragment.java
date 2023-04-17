@@ -103,7 +103,13 @@ public class BuildingFragment extends Fragment {
         player.hide();
         initListeners();
 
-        String url = Constants.webAminHost + buildings.getPosterPath();
+        String url = "";
+        if (buildings.getDirectoryPath() != null) {
+            url = Constants.webAminHost + buildings.getDirectoryPath();
+        } else {
+            url = Constants.webAminHost + buildings.getPosterPath();
+        }
+
         Uri uri = Uri.parse(url);
         Picasso.get().invalidate(uri);
         Picasso.get().load(uri)
