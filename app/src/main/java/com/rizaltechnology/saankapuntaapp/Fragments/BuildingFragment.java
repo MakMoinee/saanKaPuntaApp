@@ -132,20 +132,30 @@ public class BuildingFragment extends Fragment {
                             lblTitle.setText(buildings.getDescription());
                             if (offices != null) {
                                 if (offices.getFloor() != "") {
-                                    String locationRaw = String.format("%s - %s", offices.getFloor(), buildings.getBuildingName());
+                                    String locationRaw = "";
+                                    if (offices.getFloor() != null) {
+                                        locationRaw = String.format("%s - %s", offices.getFloor(), buildings.getBuildingName());
+                                    } else {
+                                        locationRaw = String.format("%s", buildings.getBuildingName());
+                                    }
                                     lblLocation.setVisibility(View.VISIBLE);
                                     txtLocation.setVisibility(View.VISIBLE);
                                     txtLocation.setText(locationRaw);
                                 }
-
-                                if (offices.getDirections() != "") {
+                                if (offices.getDirections() != "" && offices.getDirections() != null) {
                                     lblDirections.setVisibility(View.VISIBLE);
                                     txtDirections.setVisibility(View.VISIBLE);
                                     txtDirections.setText(offices.getDirections());
+                                } else {
+                                    lblDirections.setVisibility(View.INVISIBLE);
+                                    txtDirections.setVisibility(View.INVISIBLE);
                                 }
 
                                 loadNavGuide(imgNavGuide, offices.getFloorMapPath(), lblNavGuide);
-                                videoKey = offices.getVideoURL();
+                                if (offices.getVideoURL() != null && offices.getVideoURL() != "") {
+                                    videoKey = offices.getVideoURL();
+                                }
+
                             }
 
                         }

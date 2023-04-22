@@ -3,137 +3,143 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/imgLocation"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/location" />
-
-        <TextView
-            android:id="@+id/lblTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imgLocation"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="SAAN KA PUNTA"
-            android:textColor="@android:color/holo_purple"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:id="@+id/imgHeader"
-            android:layout_width="30dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/imgLocation"
-            android:layout_marginTop="13dp"
-            android:layout_toLeftOf="@+id/lblTitle"
-            android:src="@drawable/location" />
-
-        <TextView
-            android:id="@+id/lblWelcome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgHeader"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_light"
-            android:text="Welcome to "
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/lblSchool"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblWelcome"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/roboto_bold"
-            android:text="Rizal Technological \nUniversity"
-            android:textColor="@android:color/black"
-            android:textSize="15sp" />
-
-        <AutoCompleteTextView
-            android:id="@+id/editSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/lblSchool"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/roboto_regular"
-            android:hint="Search"
-            android:lines="1"
-            android:maxLines="1"
-            android:minLines="1"
-            android:paddingLeft="30dp"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"
-            android:theme="@style/CustomTheme" />
-
-        <ImageButton
-            android:id="@+id/imgSearch"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/lblSchool"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="25dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_search" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_below="@+id/imgSearch"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal" />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/imgLocation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/location" />
+
+            <TextView
+                android:id="@+id/lblTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imgLocation"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="SAAN KA PUNTA"
+                android:textColor="@android:color/holo_purple"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/imgHeader"
+                android:layout_width="30dp"
+                android:layout_height="20dp"
+                android:layout_below="@id/imgLocation"
+                android:layout_marginTop="13dp"
+                android:layout_toLeftOf="@+id/lblTitle"
+                android:src="@drawable/location" />
+
+            <TextView
+                android:id="@+id/lblWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgHeader"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_light"
+                android:text="Welcome to "
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/lblSchool"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblWelcome"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Rizal Technological \nUniversity"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+
+            <AutoCompleteTextView
+                android:id="@+id/editSearch"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="15dp">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lblSchool"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:fontFamily="@font/roboto_regular"
+                android:hint="Search"
+                android:lines="1"
+                android:maxLines="1"
+                android:minLines="1"
+                android:paddingLeft="30dp"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:theme="@style/CustomTheme" />
 
-                <ImageButton
-                    android:id="@+id/btnProfile"
-                    android:layout_width="0dp"
+            <ImageButton
+                android:id="@+id/imgSearch"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_below="@+id/lblSchool"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_search" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/imgSearch"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:scrollbars="horizontal" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_alignParentBottom="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_person" />
+                    android:padding="15dp">
 
-                <View
-                    android:id="@+id/btnHome"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:textSize="10sp" />
+                    <ImageButton
+                        android:id="@+id/btnProfile"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_person" />
 
-                <ImageButton
-                    android:id="@+id/btnSettings"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_menu" />
+                    <View
+                        android:id="@+id/btnHome"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:textSize="10sp" />
 
-            </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/btnSettings"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_menu" />
+
+                </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

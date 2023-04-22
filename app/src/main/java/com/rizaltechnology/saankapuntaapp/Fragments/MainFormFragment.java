@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.rizaltechnology.saankapuntaapp.Adapters.BuildingAdapter;
 import com.rizaltechnology.saankapuntaapp.Common.Constants;
@@ -30,6 +31,7 @@ import com.rizaltechnology.saankapuntaapp.Models.Offices;
 import com.rizaltechnology.saankapuntaapp.R;
 import com.rizaltechnology.saankapuntaapp.Services.LocalFirestore2;
 import com.rizaltechnology.saankapuntaapp.Services.Storage;
+import com.rizaltechnology.saankapuntaapp.databinding.FragmentMainBinding;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +61,8 @@ public class MainFormFragment extends Fragment implements StorageListener {
 
     LocalFirestore2 fs;
     Offices selectedOffice;
+
+    FragmentMainBinding binding;
 
     private BuildingListener bListener = new BuildingListener() {
         @Override
@@ -165,7 +169,8 @@ public class MainFormFragment extends Fragment implements StorageListener {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View mView = LayoutInflater.from(context).inflate(R.layout.fragment_main, container, false);
+        binding = FragmentMainBinding.inflate(LayoutInflater.from(context), container, false);
+        View mView = binding.getRoot();
         initViews(mView);
         initListeners(mView);
         return mView;
@@ -188,17 +193,55 @@ public class MainFormFragment extends Fragment implements StorageListener {
 
             }
         });
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainBtnListener.onProfileClick();
-            }
-        });
-        btnSettings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mainBtnListener.onNavClick();
-            }
+        btnProfile.setOnClickListener(v -> mainBtnListener.onProfileClick());
+        btnSettings.setOnClickListener(v -> mainBtnListener.onNavClick());
+        binding.refresh.setOnRefreshListener(() -> {
+
+            binding.recycler.setAdapter(null);
+            fs.getBuildings(new FireStoreListener() {
+                @Override
+                public void onError() {
+                    binding.refresh.setRefreshing(false);
+                    FireStoreListener.super.onError();
+                }
+
+                @Override
+                public void onSuccess(List<Buildings> b) {
+                    binding.refresh.setRefreshing(false);
+                    origList = new ArrayList<>();
+                    buildingsList = new ArrayList<>();
+                    for (Buildings buildings : b) {
+                        buildingsList.add(buildings);
+                        origList.add(buildings);
+                    }
+
+                    adapter = new BuildingAdapter(context, buildingsList, bListener);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+                    recyclerView.setAdapter(adapter);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            recyclerView.setVisibility(View.VISIBLE);
+                        }
+                    }, 50);
+                }
+            });
+            fs.getOffices(new FireStoreListener() {
+                @Override
+                public void onError() {
+                    Toast.makeText(context, "There are no offices available yet", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onSuccessOffice(List<Offices> o) {
+                    officeList = o;
+                    List<String> officeArray = new ArrayList<>();
+                    for (Offices offices : o) officeArray.add(offices.getOfficeName());
+                    countries = officeArray.toArray(new String[officeArray.size()]);
+                    adapterStr = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, countries);
+                    txtSearch.setAdapter(adapterStr);
+                }
+            });
         });
     }
 
