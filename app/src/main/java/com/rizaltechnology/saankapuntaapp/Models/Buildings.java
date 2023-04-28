@@ -11,4 +11,5 @@ public class Buildings {
     private String directoryPath;
     private String posterPath;
     private String videoPath;
+    private String status;
 }
