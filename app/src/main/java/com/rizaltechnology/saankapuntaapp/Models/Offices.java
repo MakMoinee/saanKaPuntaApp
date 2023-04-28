@@ -11,5 +11,6 @@ public class Offices {
     String floor;
     String floorMapPath;
     String officeName;
+    String status;
     String videoURL;
 }

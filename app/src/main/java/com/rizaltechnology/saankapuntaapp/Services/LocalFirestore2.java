@@ -67,6 +67,9 @@ public class LocalFirestore2 {
                             if (documentSnapshot.exists()) {
                                 Offices offices = documentSnapshot.toObject(Offices.class);
                                 if (offices != null) {
+                                    if(offices.getStatus()!=null && offices.getStatus().equals("archive")){
+                                        continue;
+                                    }
                                     offices.setDocID(documentSnapshot.getId());
                                     officesList.add(offices);
                                 }

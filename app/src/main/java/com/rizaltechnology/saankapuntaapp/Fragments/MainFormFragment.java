@@ -229,7 +229,7 @@ public class MainFormFragment extends Fragment implements StorageListener {
             fs.getOffices(new FireStoreListener() {
                 @Override
                 public void onError() {
-                    Toast.makeText(context, "There are no offices available yet", Toast.LENGTH_SHORT).show();
+                    officeList = new ArrayList<>();
                 }
 
                 @Override
@@ -265,19 +265,25 @@ public class MainFormFragment extends Fragment implements StorageListener {
             return;
         }
         lastSearchVal = searchVal;
-        Map<String, String> map = Constants.getBuildingMaps();
-        String storageName = map.get(searchVal);
+        String storageName = "";
+        for(Offices offices: officeList){
+            if(offices.getOfficeName().equals(searchVal)){
+                 storageName = offices.getBuilding();
+                break;
+            }
+        }
+
 
 
         if (buildingsList.size() == 0) {
 
         } else {
-            Log.e("STORAGE_NAME", storageName.toString());
+
             List<Buildings> newBuilding = new ArrayList<>();
             for (Buildings b : buildingsList) {
                 String buildName = b.getBuildingName().replaceAll(".jpg", "");
                 Log.e("buildName", buildName);
-                if (buildName.equals(storageName)) {
+                if (b.getDocID().equals(storageName)) {
                     newBuilding.add(b);
                     break;
                 }
